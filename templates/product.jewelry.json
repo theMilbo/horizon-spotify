@@ -1,13 +1,4 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
- {
+{
   "sections": {
     "main": {
       "type": "product-information",
@@ -19,7 +10,7 @@
             "media_presentation": "grid",
             "media_columns": "two",
             "image_gap": 4,
-            "large_first_image": false,
+            "large_first_image": true,
             "icons_style": "arrow",
             "slideshow_controls_style": "counter",
             "slideshow_mobile_controls_style": "dots",
@@ -50,7 +41,7 @@
             "custom_width_mobile": 100,
             "height": "fit",
             "details_position": "flex-start",
-            "gap": 28,
+            "gap": 24,
             "sticky_details_desktop": true,
             "inherit_color_scheme": true,
             "color_scheme": "scheme-1",
@@ -67,7 +58,7 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "group_icgrde": {
+            "group_header": {
               "type": "group",
               "name": "Header",
               "settings": {
@@ -107,7 +98,7 @@
                 "padding-inline-end": 0
               },
               "blocks": {
-                "text_xpVMaM": {
+                "title": {
                   "type": "text",
                   "name": "t:names.title",
                   "settings": {
@@ -133,12 +124,12 @@
                   },
                   "blocks": {}
                 },
-                "price_tVjtKg": {
+                "price": {
                   "type": "price",
                   "settings": {
                     "show_sale_price_first": true,
                     "show_installments": false,
-                    "show_tax_info": false,
+                    "show_tax_info": true,
                     "type_preset": "paragraph",
                     "width": "100%",
                     "alignment": "left",
@@ -157,11 +148,11 @@
                 }
               },
               "block_order": [
-                "text_xpVMaM",
-                "price_tVjtKg"
+                "title",
+                "price"
               ]
             },
-            "divider_VJhene": {
+            "divider_1": {
               "type": "_divider",
               "name": "t:names.divider",
               "settings": {
@@ -173,7 +164,7 @@
               },
               "blocks": {}
             },
-            "variant_picker_R3rGDr": {
+            "variant_picker": {
               "type": "variant-picker",
               "settings": {
                 "variant_style": "buttons",
@@ -186,7 +177,7 @@
               },
               "blocks": {}
             },
-            "buy_buttons_eYQEYi": {
+            "buy_buttons": {
               "type": "buy-buttons",
               "settings": {
                 "stacking": true,
@@ -221,16 +212,28 @@
               },
               "block_order": []
             },
-            "text_aEtTtq": {
+            "divider_2": {
+              "type": "_divider",
+              "name": "t:names.divider",
+              "settings": {
+                "thickness": 1,
+                "corner_radius": "square",
+                "width_percent": 100,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              },
+              "blocks": {}
+            },
+            "description": {
               "type": "text",
-              "name": "Product description",
+              "name": "Produktbeskrivelse",
               "settings": {
                 "text": "{{ closest.product.description }}",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
                 "type_preset": "rte",
-                "font": "var(--font-primary--family)",
+                "font": "var(--font-body--family)",
                 "font_size": "",
                 "line_height": "normal",
                 "letter_spacing": "normal",
@@ -246,14 +249,31 @@
                 "padding-inline-end": 0
               },
               "blocks": {}
+            },
+            "jewelry_specs": {
+              "type": "jewelry-specifications",
+              "settings": {
+                "heading": "Specifikationer",
+                "open_by_default": false,
+                "type_preset": "h6",
+                "material": "",
+                "stone": "",
+                "dimensions": "",
+                "care_summary": "Tåler vand, men undgå direkte kontakt med parfume og lotion for længere holdbarhed.",
+                "show_trust_icons": true,
+                "padding-block-start": 0,
+                "padding-block-end": 0
+              }
             }
           },
           "block_order": [
-            "group_icgrde",
-            "divider_VJhene",
-            "variant_picker_R3rGDr",
-            "buy_buttons_eYQEYi",
-            "text_aEtTtq"
+            "group_header",
+            "divider_1",
+            "variant_picker",
+            "buy_buttons",
+            "divider_2",
+            "description",
+            "jewelry_specs"
           ]
         }
       },
@@ -268,10 +288,59 @@
         "padding-block-end": 0
       }
     },
-    "product_recommendations_qggXJq": {
+    "trust_signals": {
+      "type": "trust-signals",
+      "blocks": {
+        "signal_1": {
+          "type": "signal",
+          "settings": {
+            "icon_type": "silver",
+            "title": "925 Sterling Sølv",
+            "text": "Ægte sølv i højeste kvalitet"
+          }
+        },
+        "signal_2": {
+          "type": "signal",
+          "settings": {
+            "icon_type": "guarantee",
+            "title": "14 dages returret",
+            "text": "Fuld tilfredshedsgaranti"
+          }
+        },
+        "signal_3": {
+          "type": "signal",
+          "settings": {
+            "icon_type": "shipping",
+            "title": "Hurtig levering",
+            "text": "1-3 hverdage i hele Danmark"
+          }
+        },
+        "signal_4": {
+          "type": "signal",
+          "settings": {
+            "icon_type": "gift",
+            "title": "Smuk indpakning",
+            "text": "Pakket i SIHO CPH smykkeæske"
+          }
+        }
+      },
+      "block_order": [
+        "signal_1",
+        "signal_2",
+        "signal_3",
+        "signal_4"
+      ],
+      "settings": {
+        "section_width": "page-width",
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "product_recommendations": {
       "type": "product-recommendations",
       "blocks": {
-        "text_cbcgyb": {
+        "text_header": {
           "type": "text",
           "name": "t:names.header",
           "settings": {
@@ -280,7 +349,7 @@
             "max_width": "normal",
             "alignment": "left",
             "type_preset": "h4",
-            "font": "var(--font-primary--family)",
+            "font": "var(--font-body--family)",
             "font_size": "",
             "line_height": "normal",
             "letter_spacing": "normal",
@@ -315,7 +384,7 @@
             "padding-inline-end": 0
           },
           "blocks": {
-            "product_card_gallery_DNizbJ": {
+            "card_gallery": {
               "type": "_product-card-gallery",
               "name": "t:names.product_card_media",
               "settings": {
@@ -331,7 +400,7 @@
               },
               "blocks": {}
             },
-            "product_title_M7MJkb": {
+            "product_title": {
               "type": "product-title",
               "name": "t:names.product_title",
               "settings": {
@@ -356,7 +425,7 @@
               },
               "blocks": {}
             },
-            "price_gLWgA6": {
+            "price": {
               "type": "price",
               "settings": {
                 "show_sale_price_first": true,
@@ -380,14 +449,14 @@
             }
           },
           "block_order": [
-            "product_card_gallery_DNizbJ",
-            "product_title_M7MJkb",
-            "price_gLWgA6"
+            "card_gallery",
+            "product_title",
+            "price"
           ]
         }
       },
       "block_order": [
-        "text_cbcgyb"
+        "text_header"
       ],
       "name": "t:names.product_recommendations",
       "settings": {
@@ -412,6 +481,7 @@
   },
   "order": [
     "main",
-    "product_recommendations_qggXJq"
+    "trust_signals",
+    "product_recommendations"
   ]
 }

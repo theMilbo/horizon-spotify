@@ -1,0 +1,139 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Titel",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "balance",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": ["heading", "page-content"],
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "trust_signals": {
+      "type": "trust-signals",
+      "blocks": {
+        "signal_1": {
+          "type": "signal",
+          "settings": {
+            "icon_type": "silver",
+            "title": "925 Sterling Sølv",
+            "text": "Ægte sølv i højeste kvalitet"
+          }
+        },
+        "signal_2": {
+          "type": "signal",
+          "settings": {
+            "icon_type": "gold",
+            "title": "18K Forgyldning",
+            "text": "Holdbar og luksuriøs finish"
+          }
+        },
+        "signal_3": {
+          "type": "signal",
+          "settings": {
+            "icon_type": "waterproof",
+            "title": "Vandfaste smykker",
+            "text": "Brug dem hele dagen, hver dag"
+          }
+        },
+        "signal_4": {
+          "type": "signal",
+          "settings": {
+            "icon_type": "sustainable",
+            "title": "Dansk design",
+            "text": "Designet med kærlighed i København"
+          }
+        }
+      },
+      "block_order": ["signal_1", "signal_2", "signal_3", "signal_4"],
+      "settings": {
+        "section_width": "page-width",
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "jewelry_care": {
+      "type": "jewelry-care",
+      "blocks": {
+        "tip_1": {
+          "type": "tip",
+          "settings": {
+            "icon_type": "care-brush",
+            "title": "Undgå kemikalier",
+            "text": "Tag dine smykker af før du påfører parfume, lotion eller andre kemikalier."
+          }
+        },
+        "tip_2": {
+          "type": "tip",
+          "settings": {
+            "icon_type": "waterproof",
+            "title": "Tag smykkerne af ved træning",
+            "text": "Sved kan påvirke belægningen. Tag dem af før sport."
+          }
+        },
+        "tip_3": {
+          "type": "tip",
+          "settings": {
+            "icon_type": "care-box",
+            "title": "Opbevar dem tørt",
+            "text": "Brug den medfølgende SIHO CPH smykkeæske."
+          }
+        },
+        "tip_4": {
+          "type": "tip",
+          "settings": {
+            "icon_type": "care-brush",
+            "title": "Rengøring",
+            "text": "Tør dine smykker af med en blød klud efter brug."
+          }
+        }
+      },
+      "block_order": ["tip_1", "tip_2", "tip_3", "tip_4"],
+      "settings": {
+        "section_width": "page-width",
+        "color_scheme": "",
+        "title": "Pas godt på dine smykker",
+        "subtitle": "Følg disse enkle trin for at bevare glansen.",
+        "padding-block-start": 60,
+        "padding-block-end": 60
+      }
+    }
+  },
+  "order": ["main", "trust_signals", "jewelry_care"]
+}
