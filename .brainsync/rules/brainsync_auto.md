@@ -1,7 +1,7 @@
 
 
 # Project Memory — horizon-spotify
-> 42 notes | Score threshold: >40
+> 72 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -24,16 +24,22 @@
 
 Content summary (3
 
+## Active: `snippets`
+
+- **Replaced auth SIHO**
+- **trade-off in jewelry-icons.liquid**
+- **what-changed in jewelry-icons.liquid**
+
 ## Project Standards
 
+- Strengthened types Tidl
+- what-changed in shared-context.json — confirmed 4x
+- Strengthened types Updated — ensures atomic multi-step database operations
+- Strengthened types Tidl
+- Strengthened types HEAD
+- Updated day database schema — introduces API versioning for backward compatib... — confirmed 3x
 - Strengthened types Project
 - what-changed in shared-context.json — confirmed 3x
-- convention in agent-rules.md
-- convention in .gitignore
-- Version your API from day 1 (/api/v1/)
-- Use consistent response format across all endpoints
-- Implement soft delete for important data — don't hard delete without confirmation
-- Handle timezone correctly — store UTC, display in user's timezone
 
 ## Verified Best Practices
 

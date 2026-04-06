@@ -1,20 +1,18 @@
 {%- capture children -%}
-  <div class="jewelry-care-grid">
-    <div class="jewelry-care-header">
-      <h2 class="h2">{{ section.settings.title | escape }}</h2>
-      <p class="paragraph--large">{{ section.settings.subtitle | escape }}</p>
+  <div class="jewelry-care">
+    <div class="jewelry-care__header">
+      <h2 class="jewelry-care__title h3">{{ section.settings.title | escape }}</h2>
+      <p class="jewelry-care__subtitle">{{ section.settings.subtitle | escape }}</p>
     </div>
 
-    <div class="care-tips-grid">
+    <div class="jewelry-care__grid">
       {%- for block in section.blocks -%}
-        <div class="care-tip-item" {{ block.shopify_attributes }}>
-          <h3 class="h6 care-tip-title">
-            <span class="care-tip-icon svg-wrapper">
-              {%- render 'jewelry-icons', icon: block.settings.icon_type -%}
-            </span>
-            {{ block.settings.title | escape }}
-          </h3>
-          <p class="care-tip-text paragraph--small">{{ block.settings.text | escape }}</p>
+        <div class="jewelry-care__tip" {{ block.shopify_attributes }}>
+          <div class="jewelry-care__tip-icon svg-wrapper">
+            {%- render 'jewelry-icons', icon: block.settings.icon_type -%}
+          </div>
+          <h3 class="jewelry-care__tip-title">{{ block.settings.title | escape }}</h3>
+          <p class="jewelry-care__tip-text">{{ block.settings.text | escape }}</p>
         </div>
       {%- endfor -%}
     </div>
@@ -24,44 +22,224 @@
 {%- render 'section', section: section, children: children -%}
 
 <style>
-  /* ... (styles remain the same) ... */
+  .jewelry-care {
+    width: 100%;
+  }
+
+  .jewelry-care__header {
+    text-align: center;
+    margin-block-end: 48px;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .jewelry-care__title {
+    margin: 0 0 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .jewelry-care__subtitle {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.7;
+    opacity: 0.6;
+  }
+
+  .jewelry-care__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    background: rgba(var(--color-foreground-rgb), 0.06);
+    border-radius: calc(var(--style-border-radius) + 4px);
+    overflow: hidden;
+  }
+
+  .jewelry-care__tip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 24px;
+    background: var(--color-background);
+    transition: background 0.3s ease;
+  }
+
+  .jewelry-care__tip:hover {
+    background: rgba(var(--color-foreground-rgb), 0.02);
+  }
+
+  .jewelry-care__tip-icon {
+    width: 36px;
+    height: 36px;
+    margin-block-end: 20px;
+    color: var(--color-foreground);
+    opacity: 0.6;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  .jewelry-care__tip:hover .jewelry-care__tip-icon {
+    opacity: 0.9;
+    transform: translateY(-2px);
+  }
+
+  .jewelry-care__tip-title {
+    margin: 0 0 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+  }
+
+  .jewelry-care__tip-text {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    opacity: 0.55;
+    max-width: 220px;
+  }
+
+  /* Tablet */
+  @media screen and (max-width: 989px) {
+    .jewelry-care__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .jewelry-care__tip {
+      padding: 32px 24px;
+    }
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 749px) {
+    .jewelry-care__header {
+      margin-block-end: 32px;
+    }
+
+    .jewelry-care__grid {
+      grid-template-columns: 1fr;
+      border-radius: var(--style-border-radius);
+    }
+
+    .jewelry-care__tip {
+      flex-direction: row;
+      text-align: left;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 24px;
+    }
+
+    .jewelry-care__tip-icon {
+      flex-shrink: 0;
+      margin-block-end: 0;
+      width: 28px;
+      height: 28px;
+      margin-top: 2px;
+    }
+
+    .jewelry-care__tip-text {
+      max-width: none;
+    }
+
+    .jewelry-care__tip-title {
+      font-size: 0.88rem;
+    }
+  }
 </style>
 
 {% schema %}
 {
-  "name": "SIHO Jewellery Care",
+  "name": "SIHO Smykkepleje",
   "class": "section-wrapper",
   "settings": [
-    /* ... (settings remain same) ... */
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Bredde",
+      "options": [
+        { "value": "page-width", "label": "Sidebredde" },
+        { "value": "full-width", "label": "Fuld bredde" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "Udseende"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titel",
+      "default": "Pas godt på dine smykker"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Undertitel",
+      "default": "Følg disse enkle trin for at bevare glansen i dine SIHO CPH smykker i mange år."
+    },
+    {
+      "type": "header",
+      "content": "Afstand"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top margin",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bund margin",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    }
   ],
   "blocks": [
     {
       "type": "tip",
-      "name": "Care Tip",
+      "name": "Plejeråd",
       "settings": [
         {
           "type": "select",
           "id": "icon_type",
-          "label": "Icon Type",
+          "label": "Ikon type",
           "options": [
-            { "value": "care-brush", "label": "Cleaning Brush" },
-            { "value": "care-box", "label": "Jewellery Box" },
-            { "value": "care-water", "label": "Water/Cleaning" },
-            { "value": "waterproof", "label": "Waterproof" },
-            { "value": "silver", "label": "Silver Care" }
+            { "value": "care-brush", "label": "Rensebørste" },
+            { "value": "care-box", "label": "Smykkeæske" },
+            { "value": "care-water", "label": "Vand/Rengøring" },
+            { "value": "waterproof", "label": "Vandfast" },
+            { "value": "silver", "label": "Sølvpleje" }
           ],
           "default": "care-brush"
         },
         {
           "type": "text",
           "id": "title",
-          "label": "Tip Title",
+          "label": "Titel på råd",
           "default": "Undgå kemikalier"
         },
         {
           "type": "textarea",
           "id": "text",
-          "label": "Tip Text",
+          "label": "Tekst",
           "default": "Tag dine smykker af når du bruger parfume, lotion eller hårspray."
         }
       ]
@@ -69,7 +247,7 @@
   ],
   "presets": [
     {
-      "name": "SIHO Jewellery Care",
+      "name": "SIHO Smykkepleje",
       "blocks": [
         { "type": "tip", "settings": { "icon_type": "care-brush", "title": "Undgå kemikalier", "text": "Tag dine smykker af før du påfører parfume, lotion eller andre kemikalier for at undgå misfarvning." } },
         { "type": "tip", "settings": { "icon_type": "waterproof", "title": "Tag smykkerne af ved træning", "text": "Sved kan påvirke belægningen på dine smykker. Tag dem af før sport eller fysisk aktivitet." } },

@@ -1,0 +1,307 @@
+{%- capture children -%}
+  <div class="faq-jewelry">
+    {% if section.settings.title != blank %}
+      <div class="faq-jewelry__header">
+        <h2 class="faq-jewelry__title h3">{{ section.settings.title | escape }}</h2>
+        {% if section.settings.subtitle != blank %}
+          <p class="faq-jewelry__subtitle">{{ section.settings.subtitle | escape }}</p>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="faq-jewelry__list" role="list">
+      {%- for block in section.blocks -%}
+        <details class="faq-jewelry__item" {{ block.shopify_attributes }} role="listitem">
+          <summary class="faq-jewelry__question">
+            <span class="faq-jewelry__question-text">{{ block.settings.question | escape }}</span>
+            <span class="faq-jewelry__icon svg-wrapper">
+              {{- 'icon-caret.svg' | inline_asset_content -}}
+            </span>
+          </summary>
+          <div class="faq-jewelry__answer">
+            <p>{{ block.settings.answer }}</p>
+          </div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+
+  {%- comment -%} FAQPage structured data for Google rich results {%- endcomment -%}
+  {% if section.blocks.size > 0 %}
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {% for block in section.blocks %}
+            {
+              "@type": "Question",
+              "name": "{{ block.settings.question | escape }}",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "{{ block.settings.answer | strip_html | escape }}"
+              }
+            }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ]
+      }
+    </script>
+  {% endif %}
+{%- endcapture -%}
+
+{%- render 'section', section: section, children: children -%}
+
+<style>
+  .faq-jewelry {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .faq-jewelry__header {
+    text-align: center;
+    margin-block-end: 48px;
+  }
+
+  .faq-jewelry__title {
+    margin: 0 0 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .faq-jewelry__subtitle {
+    margin: 0;
+    opacity: 0.6;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 560px;
+    margin-inline: auto;
+  }
+
+  .faq-jewelry__list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .faq-jewelry__item {
+    border-block-end: 1px solid rgba(var(--color-foreground-rgb), 0.1);
+  }
+
+  .faq-jewelry__item:first-child {
+    border-block-start: 1px solid rgba(var(--color-foreground-rgb), 0.1);
+  }
+
+  .faq-jewelry__question {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    padding-block: 20px;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 500;
+    font-size: 1.05rem;
+    line-height: 1.4;
+    transition: opacity 0.2s ease;
+  }
+
+  .faq-jewelry__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-jewelry__question:hover {
+    opacity: 0.7;
+  }
+
+  .faq-jewelry__icon {
+    flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s ease;
+    opacity: 0.4;
+  }
+
+  .faq-jewelry__item[open] .faq-jewelry__icon {
+    transform: rotate(180deg);
+  }
+
+  .faq-jewelry__answer {
+    padding-block-end: 24px;
+    padding-inline-end: 40px;
+  }
+
+  .faq-jewelry__answer p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    opacity: 0.7;
+  }
+
+  @media screen and (max-width: 749px) {
+    .faq-jewelry__header {
+      margin-block-end: 32px;
+    }
+
+    .faq-jewelry__question {
+      font-size: 0.95rem;
+      padding-block: 16px;
+      gap: 16px;
+    }
+
+    .faq-jewelry__answer {
+      padding-inline-end: 24px;
+      padding-block-end: 20px;
+    }
+
+    .faq-jewelry__answer p {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "SIHO FAQ - Smykker",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Bredde",
+      "options": [
+        { "value": "page-width", "label": "Sidebredde" },
+        { "value": "full-width", "label": "Fuld bredde" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "Indhold"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Titel",
+      "default": "Ofte stillede spørgsmål"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Undertitel",
+      "default": "Alt hvad du har brug for at vide om vores smykker"
+    },
+    {
+      "type": "header",
+      "content": "Udseende"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Afstand"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top margin",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bund margin",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "faq",
+      "name": "Spørgsmål",
+      "settings": [
+        {
+          "type": "text",
+          "id": "question",
+          "label": "Spørgsmål",
+          "default": "Hvilket materiale er jeres smykker lavet af?"
+        },
+        {
+          "type": "richtext",
+          "id": "answer",
+          "label": "Svar",
+          "default": "<p>Alle vores smykker er fremstillet i 925 sterling sølv eller 18K guldbelagt sterling sølv. Vi bruger kun materialer af højeste kvalitet for at sikre holdbarhed og et smukt udseende.</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SIHO FAQ - Smykker",
+      "blocks": [
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Hvilket materiale er jeres smykker lavet af?",
+            "answer": "<p>Alle vores smykker er fremstillet i 925 sterling sølv eller 18K guldbelagt sterling sølv. Vi bruger kun materialer af højeste kvalitet for at sikre holdbarhed og et smukt udseende.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Er jeres smykker vandfaste?",
+            "answer": "<p>Ja! Vores smykker er designet til at tåle daglig brug, inklusiv kontakt med vand. Vi anbefaler dog at undgå direkte kontakt med kemikalier som parfume, klorvand og stærke rengøringsmidler for at bevare glansen længst muligt.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Hvor lang tid tager leveringen?",
+            "answer": "<p>Vi sender alle ordrer inden for 1-2 hverdage. Levering i Danmark tager typisk 1-3 hverdage med PostNord eller GLS. Du modtager et trackingnummer, så du kan følge din pakke hele vejen.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Kan jeg returnere eller bytte mine smykker?",
+            "answer": "<p>Selvfølgelig! Vi tilbyder 14 dages fuld returret på alle køb. Smykkerne skal returneres i original emballage og i ubrugt stand. Kontakt os blot, så hjælper vi dig med processen.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Hvordan passer jeg bedst på mine smykker?",
+            "answer": "<p>For at bevare dine smykkers skønhed anbefaler vi at opbevare dem i den medfølgende SIHO CPH smykkeæske. Undgå kontakt med parfume og lotion, og tør dem af med en blød klud efter brug. Med den rette pleje vil dine smykker holde sig smukke i mange år.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Tilbyder I gavekort?",
+            "answer": "<p>Ja, vi tilbyder digitale gavekort i forskellige beløb. Det er den perfekte gave til den smykkeelskende i dit liv. Gavekortet sendes direkte til modtagerens e-mail og kan bruges med det samme i vores online butik.</p>"
+          }
+        },
+        {
+          "type": "faq",
+          "settings": {
+            "question": "Hvad betyder 18K forgyldning?",
+            "answer": "<p>18K forgyldning betyder, at smykket er belagt med et lag af 18 karat guld over sterling sølv. Dette giver smykket det samme luksuriøse udseende som massivt guld, men til en mere tilgængelig pris. Med korrekt pleje holder forgyldte smykker sig smukke i lang tid.</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

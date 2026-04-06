@@ -1,0 +1,19 @@
+{
+  "servers": {
+    "brainsync": {
+      "command": "node",
+      "args": [
+        "/Users/tommygrundstad/.antigravity/extensions/dawoodahmad.brainsync-3.0.3-universal/dist/mcp-server.js",
+        "--db",
+        "/Users/tommygrundstad/.brainsync/horizon-spotify-427f9fea/memory.db"
+      ],
+      "type": "stdio",
+      "env": {
+        "NEMOTRON_API_KEY": "",
+        "NEMOTRON_ENDPOINT": "https://api.ollama.com",
+        "NEMOTRON_MODEL": "nemotron-3-super:cloud",
+        "BRAINSYNC_LICENSE_TOKEN": "eyJ0aWVyIjoidHJpYWwiLCJleHBpcmVzQXQiOjE3NzU1NTU3MDI1NDgsIm1hY2hpbmVJZCI6ImF1dGgwfHVzIiwidiI6MX0.4326e8c4a0ef927bfb40852dda3ee0ce761bef6a2e88b8c6cd4c9eaa11084e0b"
+      }
+    }
+  }
+}

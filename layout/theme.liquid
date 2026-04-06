@@ -25,6 +25,13 @@
     {% endif %}
 
     {%- render 'meta-tags' -%}
+
+    {%- comment -%} DNS prefetch for third-party services {%- endcomment -%}
+    <link rel="dns-prefetch" href="https://cdn.shopify.com">
+    <link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.shopifycdn.com">
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+
     {%- render 'stylesheets' -%}
     {%- render 'fonts' -%}
     {%- render 'scripts' -%}
@@ -121,6 +128,11 @@
       data-product-transition="{{ settings.transition_to_main_product }}"
       data-template="{{ template }}"
     >
+      {% unless request.page_type == 'index' %}
+        <div class="page-width">
+          {%- render 'breadcrumbs' -%}
+        </div>
+      {% endunless %}
       {{ content_for_layout }}
     </main>
 

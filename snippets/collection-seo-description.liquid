@@ -1,0 +1,59 @@
+{% comment %}
+  SIHO CPH Collection SEO Description
+  Renders an SEO-rich description block at the top of collection pages.
+  Use: {% render 'collection-seo-description', collection: collection %}
+{% endcomment %}
+
+{% if collection.description != blank %}
+  <div class="collection-seo-desc" aria-label="Om denne kollektion">
+    <div class="collection-seo-desc__content">
+      {{ collection.description }}
+    </div>
+  </div>
+
+  <style>
+    .collection-seo-desc {
+      margin-block-end: 32px;
+      padding-block-end: 32px;
+      border-block-end: 1px solid rgba(var(--color-foreground-rgb), 0.08);
+    }
+
+    .collection-seo-desc__content {
+      max-width: 720px;
+      font-size: 0.92rem;
+      line-height: 1.8;
+      opacity: 0.65;
+    }
+
+    .collection-seo-desc__content p {
+      margin: 0;
+    }
+
+    .collection-seo-desc__content p + p {
+      margin-block-start: 12px;
+    }
+
+    .collection-seo-desc__content a {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      transition: opacity 0.2s ease;
+    }
+
+    .collection-seo-desc__content a:hover {
+      opacity: 0.8;
+    }
+
+    @media screen and (max-width: 749px) {
+      .collection-seo-desc {
+        margin-block-end: 24px;
+        padding-block-end: 24px;
+      }
+
+      .collection-seo-desc__content {
+        font-size: 0.88rem;
+        line-height: 1.7;
+      }
+    }
+  </style>
+{% endif %}

@@ -1,7 +1,9 @@
 {% comment %}
-  SIHO CPH Advanced Structured Data
+  SIHO CPH Advanced Structured Data - Comprehensive SEO Schema
+  Supports: JewelryStore, WebSite, Product, Collection, Article, FAQ, Breadcrumb
 {% endcomment %}
 
+{%- comment -%}=== HOMEPAGE: JewelryStore + WebSite + Organization ==={%- endcomment -%}
 {% if request.page_type == 'index' %}
   <script type="application/ld+json">
     {
@@ -10,22 +12,118 @@
       "name": "{{ shop.name }}",
       "url": "{{ shop.url }}",
       {% if settings.logo != blank %}
-        "logo": "{{ settings.logo | image_url: width: 500 }}",
+        "logo": "https:{{ settings.logo | image_url: width: 500 }}",
+        "image": "https:{{ settings.logo | image_url: width: 1200 }}",
       {% endif %}
-      "description": "{{ shop.description | escape }}",
+      "description": "{{ shop.description | escape | default: 'Elegante smykker i 925 sterling sølv og 18K guld. Dansk design fra København.' }}",
+      "telephone": "{{ settings.social_twitter_link | default: '' }}",
+      "priceRange": "$$",
+      "currenciesAccepted": "DKK",
+      "paymentAccepted": "Kreditkort, MobilePay, Visa, Mastercard",
       "address": {
         "@type": "PostalAddress",
-        "addressLocality": "Copenhagen",
-        "addressCountry": "DK"
+        "addressLocality": "København",
+        "addressRegion": "Hovedstaden",
+        "addressCountry": "DK",
+        "postalCode": "1000"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "55.6761",
+        "longitude": "12.5683"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "00:00",
+        "closes": "23:59",
+        "description": "Online butik - altid åben"
       },
       "sameAs": [
-        "{{ settings.social_instagram_link }}",
-        "{{ settings.social_facebook_link }}"
-      ]
+        {% if settings.social_instagram_link != blank %}"{{ settings.social_instagram_link }}"{% endif %}
+        {% if settings.social_instagram_link != blank and settings.social_facebook_link != blank %},{% endif %}
+        {% if settings.social_facebook_link != blank %}"{{ settings.social_facebook_link }}"{% endif %}
+        {% if settings.social_facebook_link != blank and settings.social_tiktok_link != blank %},{% endif %}
+        {% if settings.social_tiktok_link != blank %}"{{ settings.social_tiktok_link }}"{% endif %}
+        {% if settings.social_tiktok_link != blank and settings.social_pinterest_link != blank %},{% endif %}
+        {% if settings.social_pinterest_link != blank %}"{{ settings.social_pinterest_link }}"{% endif %}
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "SIHO CPH Smykkekollektion",
+        "itemListElement": [
+          {
+            "@type": "OfferCatalog",
+            "name": "Halskæder",
+            "description": "Elegante halskæder i sølv og guld"
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Armbånd",
+            "description": "Stilfulde armbånd til enhver lejlighed"
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Øreringe",
+            "description": "Smukke øreringe i dansk design"
+          },
+          {
+            "@type": "OfferCatalog",
+            "name": "Ringe",
+            "description": "Tidløse ringe i sterling sølv"
+          }
+        ]
+      }
+    }
+  </script>
+
+  {%- comment -%} WebSite schema with SearchAction for Google Sitelinks Search Box {%- endcomment -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "{{ shop.name }}",
+      "url": "{{ shop.url }}",
+      "description": "{{ shop.description | escape }}",
+      "inLanguage": "da-DK",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "{{ shop.url }}/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    }
+  </script>
+
+  {%- comment -%} Organization schema {%- endcomment -%}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "SIHO CPH",
+      "legalName": "SIHO CPH",
+      "url": "{{ shop.url }}",
+      {% if settings.logo != blank %}
+        "logo": "https:{{ settings.logo | image_url: width: 500 }}",
+      {% endif %}
+      "foundingLocation": {
+        "@type": "Place",
+        "name": "København, Danmark"
+      },
+      "slogan": "Tidløse smykker i dansk design",
+      "knowsAbout": ["Smykker", "Sterling Sølv", "18K Guld", "Dansk Smykkedesign", "Halskæder", "Armbånd", "Øreringe", "Ringe"],
+      "brand": {
+        "@type": "Brand",
+        "name": "SIHO CPH",
+        "description": "Elegant dansk smykkedesign i 925 sterling sølv og 18K guld"
+      }
     }
   </script>
 {% endif %}
 
+{%- comment -%}=== PRODUCT PAGE: Product with full detail ==={%- endcomment -%}
 {% if request.page_type == 'product' %}
   <script type="application/ld+json">
     {
@@ -40,24 +138,180 @@
       ],
       "description": "{{ product.description | strip_html | truncatewords: 50 | escape }}",
       "sku": "{{ product.selected_or_first_available_variant.sku }}",
+      "mpn": "{{ product.selected_or_first_available_variant.barcode | default: product.selected_or_first_available_variant.sku }}",
       "brand": {
         "@type": "Brand",
-        "name": "{{ shop.name }}"
+        "name": "SIHO CPH"
+      },
+      "manufacturer": {
+        "@type": "Organization",
+        "name": "SIHO CPH"
       },
       "material": "{{ product.metafields.custom.material | default: '925 Sterling Sølv' }}",
+      "category": "{{ product.type | default: 'Smykker' }}",
+      "color": "{{ product.metafields.custom.color | default: 'Sølv' }}",
+      "audience": {
+        "@type": "PeopleAudience",
+        "suggestedGender": "unisex"
+      },
       "offers": {
-        "@type": "Offer",
+        "@type": "AggregateOffer",
         "url": "{{ shop.url }}{{ product.url }}",
         "priceCurrency": "{{ cart.currency.iso_code }}",
-        "price": "{{ product.price | money_without_currency | replace: ',', '.' }}",
+        "lowPrice": "{{ product.price_min | money_without_currency | replace: ',', '.' | strip }}",
+        "highPrice": "{{ product.price_max | money_without_currency | replace: ',', '.' | strip }}",
+        "offerCount": "{{ product.variants.size }}",
         "availability": "https://schema.org/{% if product.available %}InStock{% else %}OutOfStock{% endif %}",
-        "itemCondition": "https://schema.org/NewCondition"
+        "itemCondition": "https://schema.org/NewCondition",
+        "seller": {
+          "@type": "Organization",
+          "name": "SIHO CPH"
+        },
+        "shippingDetails": {
+          "@type": "OfferShippingDetails",
+          "shippingDestination": {
+            "@type": "DefinedRegion",
+            "addressCountry": "DK"
+          },
+          "deliveryTime": {
+            "@type": "ShippingDeliveryTime",
+            "handlingTime": {
+              "@type": "QuantitativeValue",
+              "minValue": 1,
+              "maxValue": 2,
+              "unitCode": "DAY"
+            },
+            "transitTime": {
+              "@type": "QuantitativeValue",
+              "minValue": 1,
+              "maxValue": 3,
+              "unitCode": "DAY"
+            }
+          }
+        },
+        "hasMerchantReturnPolicy": {
+          "@type": "MerchantReturnPolicy",
+          "applicableCountry": "DK",
+          "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+          "merchantReturnDays": 14,
+          "returnMethod": "https://schema.org/ReturnByMail",
+          "returnFees": "https://schema.org/FreeReturn"
+        }
+      }
+      {% if product.metafields.reviews.rating.value != blank %}
+        ,"aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "{{ product.metafields.reviews.rating.value.rating }}",
+          "ratingCount": "{{ product.metafields.reviews.rating_count.value | default: 1 }}",
+          "bestRating": "5",
+          "worstRating": "1"
+        }
+      {% endif %}
+    }
+  </script>
+{% endif %}
+
+{%- comment -%}=== COLLECTION PAGE: CollectionPage + ItemList ==={%- endcomment -%}
+{% if request.page_type == 'collection' %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "{{ collection.title | escape }}",
+      "url": "{{ shop.url }}{{ collection.url }}",
+      "description": "{{ collection.description | strip_html | truncatewords: 30 | escape | default: collection.title | append: ' - Elegante smykker fra SIHO CPH i dansk design' }}",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "{{ shop.name }}",
+        "url": "{{ shop.url }}"
+      },
+      "mainEntity": {
+        "@type": "ItemList",
+        "numberOfItems": {{ collection.products_count }},
+        "itemListElement": [
+          {% for product in collection.products limit: 12 %}
+            {
+              "@type": "ListItem",
+              "position": {{ forloop.index }},
+              "url": "{{ shop.url }}{{ product.url }}",
+              "name": "{{ product.title | escape }}",
+              "image": "https:{{ product.featured_image | image_url: width: 800 }}"
+            }{% unless forloop.last %},{% endunless %}
+          {% endfor %}
+        ]
       }
     }
   </script>
 {% endif %}
 
-{% if request.page_type == 'collection' or request.page_type == 'product' %}
+{%- comment -%}=== ARTICLE PAGE: Article schema ==={%- endcomment -%}
+{% if request.page_type == 'article' %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "{{ article.title | escape }}",
+      "url": "{{ shop.url }}{{ article.url }}",
+      "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+      "dateModified": "{{ article.updated_at | date: '%Y-%m-%dT%H:%M:%S%z' }}",
+      {% if article.image %}
+        "image": "https:{{ article.image | image_url: width: 1200 }}",
+      {% endif %}
+      "author": {
+        "@type": "Organization",
+        "name": "SIHO CPH"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "SIHO CPH",
+        {% if settings.logo != blank %}
+          "logo": {
+            "@type": "ImageObject",
+            "url": "https:{{ settings.logo | image_url: width: 500 }}"
+          },
+        {% endif %}
+        "url": "{{ shop.url }}"
+      },
+      "description": "{{ article.excerpt_or_content | strip_html | truncatewords: 30 | escape }}",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "{{ shop.url }}{{ article.url }}"
+      },
+      "inLanguage": "da-DK"
+    }
+  </script>
+{% endif %}
+
+{%- comment -%}=== BLOG PAGE: Blog schema ==={%- endcomment -%}
+{% if request.page_type == 'blog' %}
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Blog",
+      "name": "{{ blog.title | escape }}",
+      "url": "{{ shop.url }}{{ blog.url }}",
+      "description": "Smykketips, plejeråd og inspiration fra SIHO CPH",
+      "publisher": {
+        "@type": "Organization",
+        "name": "SIHO CPH"
+      },
+      "inLanguage": "da-DK",
+      "blogPost": [
+        {% for article in blog.articles limit: 10 %}
+          {
+            "@type": "BlogPosting",
+            "headline": "{{ article.title | escape }}",
+            "url": "{{ shop.url }}{{ article.url }}",
+            "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%H:%M:%S%z' }}"
+          }{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+    }
+  </script>
+{% endif %}
+
+{%- comment -%}=== BREADCRUMBS (all relevant pages) ==={%- endcomment -%}
+{% if request.page_type == 'collection' or request.page_type == 'product' or request.page_type == 'article' or request.page_type == 'page' %}
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -66,7 +320,7 @@
         {
           "@type": "ListItem",
           "position": 1,
-          "name": "Home",
+          "name": "Forside",
           "item": "{{ shop.url }}"
         }
         {% if request.page_type == 'collection' %}
@@ -94,10 +348,36 @@
             ,{
               "@type": "ListItem",
               "position": 2,
+              "name": "Smykker",
+              "item": "{{ shop.url }}/collections/all"
+            }
+            ,{
+              "@type": "ListItem",
+              "position": 3,
               "name": "{{ product.title | escape }}",
               "item": "{{ shop.url }}{{ product.url }}"
             }
           {% endif %}
+        {% elsif request.page_type == 'article' %}
+          ,{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{ blog.title | escape }}",
+            "item": "{{ shop.url }}{{ blog.url }}"
+          }
+          ,{
+            "@type": "ListItem",
+            "position": 3,
+            "name": "{{ article.title | escape }}",
+            "item": "{{ shop.url }}{{ article.url }}"
+          }
+        {% elsif request.page_type == 'page' %}
+          ,{
+            "@type": "ListItem",
+            "position": 2,
+            "name": "{{ page.title | escape }}",
+            "item": "{{ shop.url }}{{ page.url }}"
+          }
         {% endif %}
       ]
     }

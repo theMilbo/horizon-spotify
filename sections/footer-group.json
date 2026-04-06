@@ -16,7 +16,7 @@
       "blocks": {
         "group_wErUQf": {
           "type": "group",
-          "name": "Join our email list",
+          "name": "Tilmeld dig her",
           "settings": {
             "link": "",
             "open_in_new_tab": false,
@@ -58,7 +58,7 @@
               "type": "text",
               "name": "Heading",
               "settings": {
-                "text": "<h2>Join our email list</h2>",
+                "text": "<h2>Tilmeld dig her</h2>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",
@@ -84,7 +84,7 @@
               "type": "text",
               "name": "Text",
               "settings": {
-                "text": "<p>Get exclusive deals and early access to new products.</p>",
+                "text": "<p>Tilmeld dig vores nyhedsbrev og få eksklusive tilbud og tidlig adgang til nye produkter.</p>",
                 "width": "100%",
                 "max_width": "normal",
                 "alignment": "left",

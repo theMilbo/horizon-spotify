@@ -21,24 +21,50 @@
   assign og_title = page_title | default: shop.name
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
-  assign og_description = page_description | default: shop.description | default: "Tidløse og elegante smykker i 925 sterling sølv og 18K guld. Køb armbånd, halskæder og øreringe hos SIHO CPH."
+  assign og_description = page_description | default: shop.description | default: "Tidløse og elegante smykker i 925 sterling sølv og 18K guld. Køb armbånd, halskæder, øreringe og ringe hos SIHO CPH. Dansk design, hurtig levering i Danmark."
 
   if request.page_type == 'product'
     assign og_type = 'product'
-    assign og_title = product.title | append: " - " | append: brand_suffix
+    assign og_title = product.title | append: " | Køb online - SIHO CPH"
   elsif request.page_type == 'collection'
-    assign og_title = collection.title | append: " " | append: brand_suffix
+    assign og_title = collection.title | append: " | SIHO CPH - Smykker i sølv & guld"
   elsif request.page_type == 'article'
     assign og_type = 'article'
+    assign og_title = article.title | append: " | SIHO CPH Blog"
+  elsif request.page_type == 'blog'
+    assign og_title = blog.title | append: " | SIHO CPH Smykkeblog"
   elsif request.page_type == 'password'
     assign og_url = request.origin
+  elsif request.page_type == 'search'
+    assign og_title = "Søg i smykker | SIHO CPH"
   endif
-%}
+-%}
 
+{%- comment -%} Robots meta - control indexing {%- endcomment -%}
+{%- if request.page_type == 'search' or request.page_type == 'cart' or request.page_type == 'password' -%}
+  <meta name="robots" content="noindex, nofollow">
+{%- elsif template contains 'customers' -%}
+  <meta name="robots" content="noindex, nofollow">
+{%- else -%}
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+{%- endif -%}
+
+{%- comment -%} Hreflang for Danish primary {%- endcomment -%}
+<link rel="alternate" hreflang="da" href="{{ canonical_url }}">
+<link rel="alternate" hreflang="x-default" href="{{ canonical_url }}">
+
+{%- comment -%} Preload critical resources {%- endcomment -%}
 {%- if request.page_type == 'product' -%}
   <link rel="preload" as="image" href="{{ product.featured_media | image_url: width: 1200 }}" fetchpriority="high">
 {%- endif -%}
 
+{%- comment -%} Geo and language meta {%- endcomment -%}
+<meta name="geo.region" content="DK">
+<meta name="geo.placename" content="Copenhagen">
+<meta name="language" content="Danish">
+<meta name="content-language" content="da-DK">
+
+{%- comment -%} Open Graph {%- endcomment -%}
 <meta
   property="og:site_name"
   content="{{ shop.name }}"
@@ -59,15 +85,19 @@
   property="og:description"
   content="{{ og_description | escape }}"
 >
+<meta
+  property="og:locale"
+  content="da_DK"
+>
 
 {%- if page_image -%}
   <meta
     property="og:image"
-    content="http:{{ page_image | image_url }}"
+    content="https:{{ page_image | image_url: width: 1200 }}"
   >
   <meta
     property="og:image:secure_url"
-    content="https:{{ page_image | image_url }}"
+    content="https:{{ page_image | image_url: width: 1200 }}"
   >
   <meta
     property="og:image:width"
@@ -76,6 +106,10 @@
   <meta
     property="og:image:height"
     content="{{ page_image.height }}"
+  >
+  <meta
+    property="og:image:alt"
+    content="{{ og_title | escape }}"
   >
 {%- endif -%}
 
@@ -87,6 +121,18 @@
   <meta
     property="og:price:currency"
     content="{{ cart.currency.iso_code }}"
+  >
+  <meta
+    property="product:availability"
+    content="{% if product.available %}in stock{% else %}out of stock{% endif %}"
+  >
+  <meta
+    property="product:condition"
+    content="new"
+  >
+  <meta
+    property="product:brand"
+    content="{{ shop.name }}"
   >
 {%- endif -%}
 
@@ -109,9 +155,26 @@
   content="{{ og_description | escape }}"
 >
 
+{%- comment -%} SEO-optimized title tags per page type {%- endcomment -%}
 <title>
   {%- if request.page_type == 'index' -%}
-    {{ shop.name }} - Kvalitets Smykker i Sølv & Guld
+    SIHO CPH - Elegante Smykker i 925 Sølv & 18K Guld | Dansk Design
+  {%- elsif request.page_type == 'product' -%}
+    {{ product.title }} | Køb online - SIHO CPH Smykker
+  {%- elsif request.page_type == 'collection' -%}
+    {{ collection.title }} | SIHO CPH - Smykker i sølv & guld
+  {%- elsif request.page_type == 'article' -%}
+    {{ article.title }} | SIHO CPH Blog
+  {%- elsif request.page_type == 'blog' -%}
+    {{ blog.title }} | SIHO CPH Smykkeblog
+  {%- elsif request.page_type == 'search' -%}
+    Søgeresultater | SIHO CPH
+  {%- elsif request.page_type == 'cart' -%}
+    Din indkøbskurv | SIHO CPH
+  {%- elsif request.page_type == '404' -%}
+    Side ikke fundet | SIHO CPH
+  {%- elsif request.page_type == 'page' -%}
+    {{ page.title }} | SIHO CPH
   {%- else -%}
     {{ og_title | escape }}
   {%- endif -%}
@@ -122,7 +185,27 @@
   href="{{ canonical_url }}"
 >
 
-<meta
-  name="description"
-  content="{{ og_description | escape }}"
->
+{%- comment -%} Page-specific meta descriptions {%- endcomment -%}
+{%- if request.page_type == 'product' -%}
+  <meta
+    name="description"
+    content="{{ product.description | strip_html | truncatewords: 30 | escape | default: og_description }}"
+  >
+{%- elsif request.page_type == 'collection' -%}
+  <meta
+    name="description"
+    content="{{ collection.description | strip_html | truncatewords: 30 | escape | default: og_description }}"
+  >
+{%- else -%}
+  <meta
+    name="description"
+    content="{{ og_description | escape }}"
+  >
+{%- endif -%}
+
+{%- comment -%} Additional SEO keywords hint {%- endcomment -%}
+{%- if request.page_type == 'product' -%}
+  <meta name="keywords" content="{{ product.title | escape }}, {{ product.type | escape }}, smykker, sølv smykker, guld smykker, dansk design, SIHO CPH, {{ product.vendor | escape }}">
+{%- elsif request.page_type == 'collection' -%}
+  <meta name="keywords" content="{{ collection.title | escape }}, smykker kollektion, sølv, guld, dansk design, SIHO CPH, kvalitetssmykker">
+{%- endif -%}
