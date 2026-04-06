@@ -1,0 +1,165 @@
+{%- liquid
+  assign section_id = section.id | prepend: 'section-'
+-%}
+
+<style>
+  #{{ section_id }} {
+    padding-block-start: {{ section.settings.padding_top }}px;
+    padding-block-end: {{ section.settings.padding_bottom }}px;
+    background-color: {{ section.settings.bg_color }};
+    color: {{ section.settings.text_color }};
+  }
+
+  .jewelry-care-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .jewelry-care-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .jewelry-care-header h2 {
+    font-family: serif;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+  }
+
+  .jewelry-care-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+  }
+
+  .jewelry-care-item h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .jewelry-care-item p {
+    font-size: 1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+  }
+
+  @media screen and (max-width: 768px) {
+    .jewelry-care-grid {
+      grid-template-columns: 1fr;
+    }
+    .jewelry-care-header h2 {
+      font-size: 2rem;
+    }
+  }
+</style>
+
+<div id="{{ section_id }}">
+  <div class="jewelry-care-container">
+    <div class="jewelry-care-header">
+      <h2>{{ section.settings.title | escape }}</h2>
+      <p>{{ section.settings.subtitle | escape }}</p>
+    </div>
+
+    <div class="jewelry-care-grid">
+      {%- for block in section.blocks -%}
+        <div class="jewelry-care-item">
+          <h3>
+            <span class="jewelry-care-icon">
+              {% render 'icon-checkmark-burst.svg' | inline_asset_content %}
+            </span>
+            {{ block.settings.title | escape }}
+          </h3>
+          <p>{{ block.settings.text | escape }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "SIHO Jewellery Care",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Pas godt på dine smykker"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subtitle",
+      "default": "Følg disse enkle trin for at bevare glansen i dine SIHO CPH smykker i mange år."
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tip",
+      "name": "Care Tip",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tip Title",
+          "default": "Undgå kemikalier"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Tip Text",
+          "default": "Tag dine smykker af når du bruger parfume, lotion eller hårspray."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SIHO Jewellery Care",
+      "blocks": [
+        { "type": "tip", "settings": { "title": "Undgå kemikalier", "text": "Tag dine smykker af før du påfører parfume, lotion eller andre kemikalier for at undgå misfarvning." } },
+        { "type": "tip", "settings": { "title": "Tag smykkerne af ved træning", "text": "Sved kan påvirke belægningen på dine smykker. Tag dem af før sport eller fysisk aktivitet." } },
+        { "type": "tip", "settings": { "title": "Opbevar dem tørt", "text": "Brug den medfølgende SIHO CPH smykkeæske til at opbevare dine smykker, når du ikke bruger dem." } },
+        { "type": "tip", "settings": { "title": "Rengøring", "text": "Brug en blød klud til at tørre dine smykker over en gang imellem for at fjerne støv og fedt." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

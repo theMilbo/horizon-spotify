@@ -17,19 +17,27 @@
 >
 
 {%- liquid
+  assign brand_suffix = "SIHO CPH | Smykker i dansk design"
   assign og_title = page_title | default: shop.name
   assign og_url = canonical_url | default: request.origin
   assign og_type = 'website'
-  assign og_description = page_description | default: shop.description | default: shop.name
+  assign og_description = page_description | default: shop.description | default: "Tidløse og elegante smykker i 925 sterling sølv og 18K guld. Køb armbånd, halskæder og øreringe hos SIHO CPH."
 
   if request.page_type == 'product'
     assign og_type = 'product'
+    assign og_title = product.title | append: " - " | append: brand_suffix
+  elsif request.page_type == 'collection'
+    assign og_title = collection.title | append: " " | append: brand_suffix
   elsif request.page_type == 'article'
     assign og_type = 'article'
   elsif request.page_type == 'password'
     assign og_url = request.origin
   endif
 %}
+
+{%- if request.page_type == 'product' -%}
+  <link rel="preload" as="image" href="{{ product.featured_media | image_url: width: 1200 }}" fetchpriority="high">
+{%- endif -%}
 
 <meta
   property="og:site_name"
@@ -102,10 +110,11 @@
 >
 
 <title>
-  {{ page_title }}
-  {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
-  {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-  {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  {%- if request.page_type == 'index' -%}
+    {{ shop.name }} - Kvalitets Smykker i Sølv & Guld
+  {%- else -%}
+    {{ og_title | escape }}
+  {%- endif -%}
 </title>
 
 <link
@@ -113,9 +122,7 @@
   href="{{ canonical_url }}"
 >
 
-{% if page_description %}
-  <meta
-    name="description"
-    content="{{ page_description | escape }}"
-  >
-{% endif %}
+<meta
+  name="description"
+  content="{{ og_description | escape }}"
+>

@@ -1,0 +1,35 @@
+{% comment %}
+  SIHO CPH Jewellery Icons
+{% endcomment %}
+
+{% case icon %}
+  {% when 'silver' %}
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="7" y="15" font-family="Arial" font-size="6" fill="currentColor">925</text>
+    </svg>
+  {% when 'gold' %}
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M12 7V17M7 12H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <text x="8" y="16" font-family="Arial" font-size="5" fill="currentColor">18K</text>
+    </svg>
+  {% when 'diamond' %}
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M6 3L3 8L12 21L21 8L18 3H6Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12 21L3 8H21L12 21Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12 21V3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  {% when 'sustainable' %}
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="currentColor" stroke-width="1.5"/>
+      <path d="M7 12L10 15L17 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M12 2V6M12 18V22M2 12H6M18 12H22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+  {% when 'waterproof' %}
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12 22C14.2091 22 16 20.2091 16 18C16 15.5 12 11 12 11C12 11 8 15.5 8 18C8 20.2091 9.79086 22 12 22Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M18 13C20.2091 13 22 11.2091 22 9C22 7 18 3 18 3C18 3 14 7 14 9C14 11.2091 15.7909 13 18 13Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M6 13C8.20914 13 10 11.2091 10 9C10 7 6 3 6 3C6 3 2 7 2 9C2 11.2091 3.79086 13 6 13Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+{% endcase %}
