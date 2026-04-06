@@ -7,7 +7,7 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "sections": {
     "hero_jVaWmY": {
       "type": "hero",
@@ -16,7 +16,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p>Browse our latest products</p>",
+            "text": "<p>Tidløse smykker til enhver anledning</p>",
             "width": "fit-content",
             "max_width": "normal",
             "alignment": "left",
@@ -42,7 +42,7 @@
           "type": "button",
           "name": "t:names.button",
           "settings": {
-            "label": "Shop all",
+            "label": "Se Produkter",
             "link": "shopify://collections/all",
             "open_in_new_tab": false,
             "style_class": "button-secondary",
@@ -61,7 +61,12 @@
       "name": "t:names.hero",
       "settings": {
         "media_type_1": "image",
+        "image_1": "shopify://shop_images/IMG_3470.jpg",
         "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
         "link": "",
         "open_in_new_tab": false,
         "content_direction": "column",
@@ -84,6 +89,47 @@
         "reflection_opacity": 75,
         "padding-block-start": 100,
         "padding-block-end": 72
+      }
+    },
+    "trust_signals_xEx3Jf": {
+      "type": "trust-signals",
+      "blocks": {
+        "signal_AFFzfd": {
+          "type": "signal",
+          "settings": {
+            "icon_type": "silver",
+            "title": "925 Sterling Sølv",
+            "text": "Ægte sølv i højeste kvalitet."
+          }
+        },
+        "signal_bCTNLi": {
+          "type": "signal",
+          "settings": {
+            "icon_type": "gold",
+            "title": "18K Forgyldning",
+            "text": "Holdbar og luksuriøs finish."
+          }
+        },
+        "signal_733fXT": {
+          "type": "signal",
+          "settings": {
+            "icon_type": "waterproof",
+            "title": "Vandfaste smykker",
+            "text": "Brug dem hele dagen, hver dag."
+          }
+        }
+      },
+      "block_order": [
+        "signal_AFFzfd",
+        "signal_bCTNLi",
+        "signal_733fXT"
+      ],
+      "name": "SIHO Trust Signals",
+      "settings": {
+        "section_width": "page-width",
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 40
       }
     },
     "product_list_fa6P9H": {
@@ -283,6 +329,7 @@
   },
   "order": [
     "hero_jVaWmY",
+    "trust_signals_xEx3Jf",
     "product_list_fa6P9H"
   ]
 }
