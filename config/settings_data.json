@@ -7,10 +7,12 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
- {
+{
   "current": {
-    "logo_height": 36,
+    "logo": "shopify://shop_images/IMG_3502.png",
+    "logo_height": 53,
     "logo_height_mobile": 28,
+    "favicon": "shopify://shop_images/IMG_3502.png",
     "type_body_font": "inter_n4",
     "type_subheading_font": "inter_n5",
     "type_heading_font": "inter_n7",
@@ -42,9 +44,9 @@
     "type_size_h6": "12",
     "type_line_height_h6": "display-loose",
     "page_width": "narrow",
-    "page_transition_enabled": false,
-    "transition_to_main_product": false,
-    "card_hover_effect": "none",
+    "page_transition_enabled": true,
+    "transition_to_main_product": true,
+    "card_hover_effect": "subtle-zoom",
     "badge_position": "top-right",
     "badge_corner_radius": 100,
     "badge_sale_color_scheme": "scheme-1",
@@ -54,11 +56,12 @@
     "button_border_radius_primary": 14,
     "secondary_button_border_width": 1,
     "button_border_radius_secondary": 14,
-    "button_font_weight_secondary": "default",
     "cart_type": "drawer",
     "cart_price_font": "subheading",
     "show_cart_note": false,
     "show_add_discount_code": true,
+    "drawer_border_width": 0,
+    "drawer_border_opacity": 0,
     "drawer_drop_shadow": true,
     "icon_stroke": "default",
     "input_border_width": 1,
@@ -67,8 +70,6 @@
     "popover_border": "none",
     "popover_border_width": 0,
     "popover_border_opacity": 0,
-    "drawer_border_width": 0,
-    "drawer_border_opacity": 0,
     "currency_code_enabled_product_pages": false,
     "currency_code_enabled_product_cards": false,
     "currency_code_enabled_cart_items": false,
@@ -81,6 +82,7 @@
     "variant_button_border_width": 1,
     "variant_button_radius": 14,
     "variant_button_width": "equal-width-buttons",
+    "button_font_weight_secondary": "default",
     "content_for_index": [],
     "color_schemes": {
       "scheme-1": {
