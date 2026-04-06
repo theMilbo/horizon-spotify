@@ -138,6 +138,284 @@
 +     </svg>
 + {% endcase %}
 + 
+- **[what-changed] Updated schema SIHO**: -     .faq-jewelry__answer p {
++     .faq-jewelry__answer p,
+-       font-size: 0.9rem;
++     .faq-jewelry__answer {
+-     }
++       font-size: 0.9rem;
+-   }
++     }
+- </style>
++   }
+- 
++ </style>
+- {% schema %}
++ 
+- {
++ {% schema %}
+-   "name": "SIHO FAQ - Smykker",
++ {
+-   "class": "section-wrapper",
++   "name": "SIHO FAQ - Smykker",
+-   "settings": [
++   "class": "section-wrapper",
+-     {
++   "settings": [
+-       "type": "header",
++     {
+-       "content": "Layout"
++       "type": "header",
+-     },
++       "content": "Layout"
+-     {
++     },
+-       "type": "select",
++     {
+-       "id": "section_width",
++       "type": "select",
+-       "label": "Bredde",
++       "id": "section_width",
+-       "options": [
++       "label": "Bredde",
+-         { "value": "page-width", "label": "Sidebredde" },
++       "options": [
+-         { "value": "full-width", "label": "Fuld bredde" }
++         { "value": "page-width", "label": "Sidebredde" },
+-       ],
++         { "value": "full-width", "label": "Fuld bredde" }
+-       "default": "page-width"
++       ],
+-     },
++       "default": "page-width"
+-     {
++     },
+-       "type": "header",
++     {
+-       "content": "Indhold"
++       "type": "header",
+-     },
++       "content": "Indhold"
+-     {
++     },
+-       "type": "text",
++     {
+-       "id": "title",
++       "type": "text",
+-       "label": "Titel",
++       "id": "title",
+-       "default": "Ofte stillede spørgsmål"
++       "label": "Titel",
+-     },
++       "default": "Ofte stillede spørgsmål"
+-     {
++     },
+-       "type": "text",
++     {
+-       "id": "subtitle",
++       "type": "text",
+-       "label": "Undertitel",
++       "id": "subtitle",
+-       "default": "Alt hvad du har brug for at vide om vores smykker"
++       "label": "Undertitel",
+-     },
++       "default": "Alt hvad du har brug for at vide om vores smykker"
+-     {
++     },
+-       "type": "header",
++     {
+-       "content": "Udseende"
++       "type": "header",
+-     },
++       "content": "Uds
+… [diff truncated]
+- **[what-changed] Updated schema SIHO**: -   .faq-jewelry__answer p {
++   .faq-jewelry__answer p,
+-     margin: 0;
++   .faq-jewelry__answer {
+-     font-size: 0.95rem;
++     margin: 0;
+-     line-height: 1.7;
++     font-size: 0.95rem;
+-     opacity: 0.7;
++     line-height: 1.7;
+-   }
++     opacity: 0.7;
+- 
++   }
+-   @media screen and (max-width: 749px) {
++ 
+-     .faq-jewelry__header {
++   .faq-jewelry__answer p:first-child {
+-       margin-block-end: 32px;
++     margin-block-start: 0;
+-     }
++   }
+-     .faq-jewelry__question {
++   .faq-jewelry__answer p:last-child {
+-       font-size: 0.95rem;
++     margin-block-end: 0;
+-       padding-block: 16px;
++   }
+-       gap: 16px;
++ 
+-     }
++   @media screen and (max-width: 749px) {
+- 
++     .faq-jewelry__header {
+-     .faq-jewelry__answer {
++       margin-block-end: 32px;
+-       padding-inline-end: 24px;
++     }
+-       padding-block-end: 20px;
++ 
+-     }
++     .faq-jewelry__question {
+- 
++       font-size: 0.95rem;
+-     .faq-jewelry__answer p {
++       padding-block: 16px;
+-       font-size: 0.9rem;
++       gap: 16px;
+-   }
++ 
+- </style>
++     .faq-jewelry__answer {
+- 
++       padding-inline-end: 24px;
+- {% schema %}
++       padding-block-end: 20px;
+- {
++     }
+-   "name": "SIHO FAQ - Smykker",
++ 
+-   "class": "section-wrapper",
++     .faq-jewelry__answer p {
+-   "settings": [
++       font-size: 0.9rem;
+-     {
++     }
+-       "type": "header",
++   }
+-       "content": "Layout"
++ </style>
+-     },
++ 
+-     {
++ {% schema %}
+-       "type": "select",
++ {
+-       "id": "section_width",
++   "name": "SIHO FAQ - Smykker",
+-       "label": "Bredde",
++   "class": "section-wrapper",
+-       "options": [
++   "settings": [
+-         { "value": "page-width", "label": "Sidebredde" },
++     {
+-         { "value": "full-width", "label": "Fuld bredde" }
++       "type": "header",
+-       ],
++       "content": "Layout"
+-       "default": "page-width"
++     },
+-     },
++     {
+-     {
++       "type": "select",
+-       "type": "header",
++       "id": "section_width",
+-      
+… [diff truncated]
+- **[what-changed] Updated configuration faq-jewelry**: -           <div class="faq-jewelry__answer">
++           <div class="faq-jewelry__answer rte">
+-             <p>{{ block.settings.answer }}</p>
++             {{ block.settings.answer }}
+- **[convention] Updated schema Tablet — confirmed 3x**: -     width: 52px;
++     width: 56px;
+-     height: 52px;
++     height: 56px;
+-     background: rgba(var(--color-foreground-rgb), 0.04);
++     background: rgba(var(--color-foreground-rgb), 0.05);
+-     transition: transform 0.3s ease, background 0.3s ease;
++     transition: transform 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
+-     transform: scale(1.05);
++     transform: scale(1.08);
+-     background: rgba(var(--color-foreground-rgb), 0.07);
++     background: rgba(var(--color-foreground-rgb), 0.08);
+-   }
++     box-shadow: 0 4px 20px rgba(var(--color-foreground-rgb), 0.06);
+- 
++   }
+-   .trust-signal__icon {
++ 
+-     width: 24px;
++   .trust-signal__icon {
+-     height: 24px;
++     width: 26px;
+-     color: var(--color-foreground);
++     height: 26px;
+-     opacity: 0.8;
++     color: var(--color-foreground);
+-   }
++     opacity: 0.75;
+- 
++   }
+-   .trust-signal__content {
++ 
+-     display: flex;
++   .trust-signal__content {
+-     flex-direction: column;
++     display: flex;
+-     gap: 2px;
++     flex-direction: column;
+-   }
++     gap: 2px;
+- 
++   }
+-   .trust-signal__title {
++ 
+-     margin: 0;
++   .trust-signal__title {
+-     font-size: 0.95rem;
++     margin: 0;
+-     font-weight: 600;
++     font-size: 0.95rem;
+-     letter-spacing: -0.01em;
++     font-weight: 600;
+-     line-height: 1.3;
++     letter-spacing: -0.01em;
+-   }
++     line-height: 1.3;
+- 
++   }
+-   .trust-signal__text {
++ 
+-     margin: 0;
++   .trust-signal__text {
+-     font-size: 0.82rem;
++     margin: 0;
+-     opacity: 0.55;
++     font-size: 0.82rem;
+-     line-height: 1.5;
++     opacity: 0.55;
+-     letter-spacing: 0.01em;
++     line-height: 1.5;
+-   }
++     letter-spacing: 0.01em;
+- 
++   }
+-   /* Tablet: 2 columns */
++ 
+-   @media screen and (max-width: 989px) and (min-width: 750px) {
++   /* Tablet: 2 columns */
+-     .trust-signals {
++   @media screen and (max-width: 989px) and (min-width: 750px) {
+-       grid-template-columns: repeat(2, 1fr);
++     .trust-signals {
+-     }
++    
+… [diff truncated]
 - **[what-changed] Updated schema main-collection**: -     {% content_for 'block',
 +     {% render 'collection-seo-description', collection: collection %}
 -       type: 'filters',
@@ -190,126 +468,6 @@
 +             {% # theme-check-disable %}
 -           </li>
 +             {% content_for 'block', type: '_product
-… [diff truncated]
-- **[what-changed] Updated schema Tablet**: -   <div class="jewelry-care-grid">
-+   <div class="jewelry-care">
--     <div class="jewelry-care-header">
-+     <div class="jewelry-care__header">
--       <h2 class="h2">{{ section.settings.title | escape }}</h2>
-+       <h2 class="jewelry-care__title h3">{{ section.settings.title | escape }}</h2>
--       <p class="paragraph--large">{{ section.settings.subtitle | escape }}</p>
-+       <p class="jewelry-care__subtitle">{{ section.settings.subtitle | escape }}</p>
--     <div class="care-tips-grid">
-+     <div class="jewelry-care__grid">
--         <div class="care-tip-item" {{ block.shopify_attributes }}>
-+         <div class="jewelry-care__tip" {{ block.shopify_attributes }}>
--           <h3 class="h6 care-tip-title">
-+           <div class="jewelry-care__tip-icon svg-wrapper">
--             <span class="care-tip-icon svg-wrapper">
-+             {%- render 'jewelry-icons', icon: block.settings.icon_type -%}
--               {%- render 'jewelry-icons', icon: block.settings.icon_type -%}
-+           </div>
--             </span>
-+           <h3 class="jewelry-care__tip-title">{{ block.settings.title | escape }}</h3>
--             {{ block.settings.title | escape }}
-+           <p class="jewelry-care__tip-text">{{ block.settings.text | escape }}</p>
--           </h3>
-+         </div>
--           <p class="care-tip-text paragraph--small">{{ block.settings.text | escape }}</p>
-+       {%- endfor -%}
--         </div>
-+     </div>
--       {%- endfor -%}
-+   </div>
--     </div>
-+ {%- endcapture -%}
--   </div>
-+ 
-- {%- endcapture -%}
-+ {%- render 'section', section: section, children: children -%}
-- {%- render 'section', section: section, children: children -%}
-+ <style>
-- 
-+   .jewelry-care {
-- <style>
-+     width: 100%;
--   /* ... (styles remain the same) ... */
-+   }
-- </style>
-+ 
-- 
-+   .jewelry-care__header {
-- {% schema %}
-+     text-align: center;
-- {
-+     margin-block-end: 48px;
--   "name": "SIHO Smykkepleje",
-+     max-width: 600px;
--   "class": "section-wrapper",
-+  
-… [diff truncated]
-- **[what-changed] Updated schema Tablet**: -   <div class="trust-signals-grid">
-+   <div class="trust-signals">
--       <div class="trust-signal-item" {{ block.shopify_attributes }}>
-+       <div class="trust-signal" {{ block.shopify_attributes }}>
--         <div class="trust-signal-icon svg-wrapper">
-+         <div class="trust-signal__icon-wrap">
--           {%- render 'jewelry-icons', icon: block.settings.icon_type -%}
-+           <div class="trust-signal__icon svg-wrapper">
--         </div>
-+             {%- render 'jewelry-icons', icon: block.settings.icon_type -%}
--         <div class="trust-signal-content">
-+           </div>
--           <h3 class="trust-signal-title">{{ block.settings.title | escape }}</h3>
-+         </div>
--           <p class="trust-signal-text">{{ block.settings.text | escape }}</p>
-+         <div class="trust-signal__content">
--         </div>
-+           <h3 class="trust-signal__title">{{ block.settings.title | escape }}</h3>
--       </div>
-+           <p class="trust-signal__text">{{ block.settings.text | escape }}</p>
--     {%- endfor -%}
-+         </div>
--   </div>
-+       </div>
-- {%- endcapture -%}
-+     {%- endfor -%}
-- 
-+   </div>
-- {%- render 'section', section: section, children: children -%}
-+ {%- endcapture -%}
-- <style>
-+ {%- render 'section', section: section, children: children -%}
--   .trust-signals-grid {
-+ 
--     display: flex;
-+ <style>
--     flex-wrap: wrap;
-+   .trust-signals {
--     justify-content: center;
-+     display: grid;
--     gap: var(--gap-md);
-+     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
--     width: 100%;
-+     gap: 1px;
--   }
-+     width: 100%;
-- 
-+     background: rgba(var(--color-foreground-rgb), 0.06);
--   .trust-signal-item {
-+     border-radius: calc(var(--style-border-radius) + 4px);
--     flex: 1;
-+     overflow: hidden;
--     min-width: 250px;
-+   }
--     display: flex;
-+ 
--     align-items: center;
-+   .trust-signal {
--     gap: var(--gap-sm);
-+     display: flex;
--     padding: var(--padding-md);
-+     align-items:
 … [diff truncated]
 - **[what-changed] Updated schema SIHO**: -   "name": "SIHO Jewellery Care",
 +   "name": "SIHO Smykkepleje",

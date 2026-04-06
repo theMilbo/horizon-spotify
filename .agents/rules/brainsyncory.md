@@ -1,7 +1,7 @@
 
 
 # Project Memory — horizon-spotify
-> 72 notes | Score threshold: >40
+> 99 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -20,29 +20,31 @@
 
 ## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Important Warnings
 
+- **gotcha in shared-context.json** — -     },
++     }
+-     {
++   ]
+-       "id": "44cbf955ee048ff3",
++ }
+-
 - **gotcha in agent-rules.md** — File updated (external): .brainsync/agent-rules.md
 
 Content summary (3
 
-## Active: `snippets`
-
-- **Replaced auth SIHO**
-- **trade-off in jewelry-icons.liquid**
-- **what-changed in jewelry-icons.liquid**
-
 ## Project Standards
 
-- Strengthened types Tidl
-- what-changed in shared-context.json — confirmed 4x
 - Strengthened types Updated — ensures atomic multi-step database operations
-- Strengthened types Tidl
-- Strengthened types HEAD
-- Updated day database schema — introduces API versioning for backward compatib... — confirmed 3x
-- Strengthened types Project
-- what-changed in shared-context.json — confirmed 3x
+- Replaced auth Score — evolves the database schema to support new requirements — confirmed 4x
+- Updated schema SIHO — confirmed 4x
+- Strengthened types Updated — introduces API versioning for backward compatibi...
+- what-changed in brainsync_auto.md — confirmed 3x
+- Updated schema Tablet — confirmed 3x
+- Updated schema Score — introduces API versioning for backward compatibility — confirmed 3x
+- what-changed in shared-context.json — confirmed 4x
 
-## Verified Best Practices
+## Learned Patterns
 
+- Always: what-changed in brainsync_auto.md — confirmed 3x (seen 2x)
 - Agent generates new migration for every change (squash related changes)
 - Agent installs packages without checking if already installed
 

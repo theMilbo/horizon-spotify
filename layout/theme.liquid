@@ -128,11 +128,7 @@
       data-product-transition="{{ settings.transition_to_main_product }}"
       data-template="{{ template }}"
     >
-      {% unless request.page_type == 'index' %}
-        <div class="page-width">
-          {%- render 'breadcrumbs' -%}
-        </div>
-      {% endunless %}
+      {% comment %} Breadcrumbs disabled — structured data in snippets/structured-data-jewelry.liquid handles BreadcrumbList schema {% endcomment %}
       {{ content_for_layout }}
     </main>
 
