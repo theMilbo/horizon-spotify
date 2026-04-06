@@ -9,7 +9,9 @@
       "@type": "JewelryStore",
       "name": "{{ shop.name }}",
       "url": "{{ shop.url }}",
-      "logo": "{{ settings.logo | image_url: width: 500 }}",
+      {% if settings.logo != blank %}
+        "logo": "{{ settings.logo | image_url: width: 500 }}",
+      {% endif %}
       "description": "{{ shop.description | escape }}",
       "address": {
         "@type": "PostalAddress",

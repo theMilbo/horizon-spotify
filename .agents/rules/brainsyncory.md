@@ -1,7 +1,7 @@
 
 
 # Project Memory — horizon-spotify
-> 27 notes | Score threshold: >40
+> 33 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -18,7 +18,7 @@
 
 **Stack:** Unknown stack
 
-## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Important Warnings
+## Important Warnings
 
 - **gotcha in agent-rules.md** — File updated (external): .brainsync/agent-rules.md
 
@@ -26,14 +26,14 @@ Content summary (3
 
 ## Project Standards
 
+- convention in agent-rules.md
+- convention in .gitignore
 - Version your API from day 1 (/api/v1/)
 - Use consistent response format across all endpoints
 - Implement soft delete for important data — don't hard delete without confirmation
 - Handle timezone correctly — store UTC, display in user's timezone
 - Make layouts responsive from the start — mobile-first approach
 - Disable submit button during form submission — prevent double-submit
-- Always add empty states ("No items yet" with call-to-action)
-- Always add error states with retry button — not just blank screen
 
 ## Verified Best Practices
 
