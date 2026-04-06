@@ -1,72 +1,64 @@
 {% assign block_settings = block.settings %}
 <div
   class="jewelry-specs jewelry-specs--{{ block.id }} border-style spacing-style"
-  style="{% render 'spacing-style', settings: block_settings %}"
+  style="
+    --summary-font-family: var(--font-{{ block_settings.type_preset }}--family);
+    --summary-font-weight: var(--font-{{ block_settings.type_preset }}--weight);
+    --summary-font-size: var(--font-{{ block_settings.type_preset }}--size);
+    --summary-font-case: var(--font-{{ block_settings.type_preset }}--case);
+    {% render 'spacing-style', settings: block_settings %}
+  "
   {{ block.shopify_attributes }}
 >
   <details class="jewelry-specs__details" {% if block_settings.open_by_default %}open{% endif %}>
-    <summary class="jewelry-specs__summary h6">
-      <span>{{ block_settings.heading | default: 'Specifikationer' }}</span>
-      <span class="jewelry-specs__icon">
-        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
+    <summary class="jewelry-specs__summary">
+      <span class="jewelry-specs__heading">{{ block_settings.heading | default: 'Specifikationer' }}</span>
+      <span class="jewelry-specs__arrow svg-wrapper">
+        {{- 'icon-caret.svg' | inline_asset_content -}}
       </span>
     </summary>
     <div class="jewelry-specs__content">
-      <ul class="jewelry-specs__list">
-        {% if block_settings.material != blank or product.metafields.custom.material != blank %}
-          <li class="jewelry-specs__item">
-            <span class="jewelry-specs__label">Materiale:</span>
-            <span class="jewelry-specs__value">
-              {% if product.metafields.custom.material != blank %}
-                {{ product.metafields.custom.material }}
-              {% else %}
-                {{ block_settings.material }}
-              {% endif %}
-            </span>
-          </li>
+      <div class="jewelry-specs__table">
+        {%- liquid
+          assign material = product.metafields.custom.material | default: block_settings.material
+          assign stone = product.metafields.custom.stone | default: block_settings.stone
+          assign dimensions = product.metafields.custom.dimensions | default: block_settings.dimensions
+        -%}
+
+        {% if material != blank %}
+          <div class="jewelry-specs__row">
+            <span class="jewelry-specs__label">Materiale</span>
+            <span class="jewelry-specs__value">{{ material }}</span>
+          </div>
         {% endif %}
         
-        {% if block_settings.stone != blank or product.metafields.custom.stone != blank %}
-          <li class="jewelry-specs__item">
-            <span class="jewelry-specs__label">Sten:</span>
-            <span class="jewelry-specs__value">
-              {% if product.metafields.custom.stone != blank %}
-                {{ product.metafields.custom.stone }}
-              {% else %}
-                {{ block_settings.stone }}
-              {% endif %}
-            </span>
-          </li>
+        {% if stone != blank %}
+          <div class="jewelry-specs__row">
+            <span class="jewelry-specs__label">Sten</span>
+            <span class="jewelry-specs__value">{{ stone }}</span>
+          </div>
         {% endif %}
 
-        {% if block_settings.dimensions != blank or product.metafields.custom.dimensions != blank %}
-          <li class="jewelry-specs__item">
-            <span class="jewelry-specs__label">Mål:</span>
-            <span class="jewelry-specs__value">
-              {% if product.metafields.custom.dimensions != blank %}
-                {{ product.metafields.custom.dimensions }}
-              {% else %}
-                {{ block_settings.dimensions }}
-              {% endif %}
-            </span>
-          </li>
+        {% if dimensions != blank %}
+          <div class="jewelry-specs__row">
+            <span class="jewelry-specs__label">Mål</span>
+            <span class="jewelry-specs__value">{{ dimensions }}</span>
+          </div>
         {% endif %}
 
         {% if block_settings.care_summary != blank %}
-          <li class="jewelry-specs__item jewelry-specs__item--full">
-            <span class="jewelry-specs__label">Pleje:</span>
-            <span class="jewelry-specs__value">{{ block_settings.care_summary }}</span>
-          </li>
+          <div class="jewelry-specs__row jewelry-specs__row--full">
+            <span class="jewelry-specs__label">Pleje</span>
+            <span class="jewelry-specs__value paragraph--small">{{ block_settings.care_summary }}</span>
+          </div>
         {% endif %}
-      </ul>
+      </div>
       
       {% if block_settings.show_trust_icons %}
-        <div class="jewelry-specs__trust-icons">
-          {% render 'jewelry-icons', icon: 'silver' %}
-          {% render 'jewelry-icons', icon: 'gold' %}
-          {% render 'jewelry-icons', icon: 'waterproof' %}
+        <div class="jewelry-specs__trust-icons flex">
+          <div class="svg-wrapper" title="925 Sterling Sølv">{% render 'jewelry-icons', icon: 'silver' %}</div>
+          <div class="svg-wrapper" title="18K Guld Forgyldning">{% render 'jewelry-icons', icon: 'gold' %}</div>
+          <div class="svg-wrapper" title="Ferskvandsperler">{% render 'jewelry-icons', icon: 'waterproof' %}</div>
         </div>
       {% endif %}
     </div>
@@ -76,79 +68,84 @@
 {% stylesheet %}
   .jewelry-specs {
     width: 100%;
-    border-top: 1px solid var(--color-border);
-    border-bottom: 1px solid var(--color-border);
+    border-block-start: var(--style-border-width) solid var(--color-border);
   }
 
   .jewelry-specs__summary {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
+    padding-block: var(--padding-md);
     cursor: pointer;
     list-style: none;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+    font-family: var(--summary-font-family);
+    font-weight: var(--summary-font-weight);
+    font-size: var(--summary-font-size);
+    text-transform: var(--summary-font-case);
   }
 
   .jewelry-specs__summary::-webkit-details-marker {
     display: none;
   }
 
-  .jewelry-specs__icon {
+  .jewelry-specs__arrow {
     transition: transform 0.3s ease;
+    width: 12px;
+    height: 12px;
   }
 
-  .jewelry-specs__details[open] .jewelry-specs__icon {
+  .jewelry-specs__details[open] .jewelry-specs__arrow {
     transform: rotate(180deg);
   }
 
   .jewelry-specs__content {
-    padding-bottom: 20px;
+    padding-block-end: var(--padding-lg);
   }
 
-  .jewelry-specs__list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
-  }
-
-  .jewelry-specs__item {
+  .jewelry-specs__table {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: 16px;
   }
 
-  .jewelry-specs__item--full {
-    grid-column: 1 / -1;
+  .jewelry-specs__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 20px;
+    padding-block-end: 8px;
+    border-bottom: 1px solid rgba(var(--color-foreground-rgb), 0.05);
+  }
+
+  .jewelry-specs__row--full {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+    border-bottom: none;
   }
 
   .jewelry-specs__label {
     font-size: 0.75rem;
-    color: var(--color-foreground-secondary);
     text-transform: uppercase;
+    letter-spacing: 0.05em;
+    opacity: 0.5;
+    white-space: nowrap;
   }
 
   .jewelry-specs__value {
-    font-size: 0.9rem;
-    font-weight: 500;
+    font-size: 0.95rem;
+    text-align: right;
+  }
+
+  .jewelry-specs__row--full .jewelry-specs__value {
+    text-align: left;
+    opacity: 0.8;
   }
 
   .jewelry-specs__trust-icons {
-    margin-top: 20px;
-    display: flex;
-    gap: 15px;
-    color: var(--color-foreground-secondary);
-    opacity: 0.6;
-  }
-
-  .jewelry-specs__trust-icons svg {
-    width: 20px;
-    height: 20px;
+    margin-top: 24px;
+    gap: 20px;
+    opacity: 0.4;
   }
 {% endstylesheet %}
 
@@ -168,6 +165,17 @@
       "id": "open_by_default",
       "label": "Open by default",
       "default": false
+    },
+    {
+      "type": "select",
+      "id": "type_preset",
+      "label": "t:settings.heading_preset",
+      "options": [
+        { "value": "paragraph", "label": "t:options.paragraph" },
+        { "value": "h5", "label": "t:options.h5" },
+        { "value": "h6", "label": "t:options.h6" }
+      ],
+      "default": "h6"
     },
     {
       "type": "header",
@@ -202,10 +210,6 @@
       "default": true
     },
     {
-      "type": "header",
-      "content": "t:content.padding"
-    },
-    {
       "type": "range",
       "id": "padding-block-start",
       "label": "t:settings.top",
@@ -213,7 +217,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 10
+      "default": 0
     },
     {
       "type": "range",
@@ -223,7 +227,7 @@
       "max": 100,
       "step": 1,
       "unit": "px",
-      "default": 10
+      "default": 0
     }
   ],
   "presets": [
