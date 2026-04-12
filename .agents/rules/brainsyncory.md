@@ -1,7 +1,7 @@
 
 
 # Project Memory — horizon-spotify
-> 99 notes | Score threshold: >40
+> 669 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -18,33 +18,22 @@
 
 **Stack:** Unknown stack
 
-## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Important Warnings
+## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Project Standards
 
-- **gotcha in shared-context.json** — -     },
-+     }
--     {
-+   ]
--       "id": "44cbf955ee048ff3",
-+ }
--
-- **gotcha in agent-rules.md** — File updated (external): .brainsync/agent-rules.md
-
-Content summary (3
-
-## Project Standards
-
-- Strengthened types Updated — ensures atomic multi-step database operations
-- Replaced auth Score — evolves the database schema to support new requirements — confirmed 4x
-- Updated schema SIHO — confirmed 4x
-- Strengthened types Updated — introduces API versioning for backward compatibi...
 - what-changed in brainsync_auto.md — confirmed 3x
-- Updated schema Tablet — confirmed 3x
-- Updated schema Score — introduces API versioning for backward compatibility — confirmed 3x
-- what-changed in shared-context.json — confirmed 4x
+- Replaced auth Score — confirmed 3x
+- what-changed in brainsync_auto.md — confirmed 3x
+- what-changed in brainsync_auto.md — confirmed 3x
+- Replaced auth Score — confirmed 3x
+- what-changed in brainsync_auto.md — confirmed 3x
+- what-changed in brainsync_auto.md — confirmed 3x
+- Replaced auth Score — confirmed 3x
 
 ## Learned Patterns
 
-- Always: what-changed in brainsync_auto.md — confirmed 3x (seen 2x)
+- Always: what-changed in brainsync_auto.md — confirmed 3x (seen 4x)
+- Always: Replaced auth Score — introduces API versioning for backward compatibility — confirmed 3x (seen 2x)
+- Always: what-changed in brainsync_auto.md — confirmed 3x (seen 5x)
 - Agent generates new migration for every change (squash related changes)
 - Agent installs packages without checking if already installed
 

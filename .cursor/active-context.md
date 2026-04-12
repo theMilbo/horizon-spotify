@@ -1,663 +1,283 @@
 > **BrainSync Context Pumper** 🧠
-> Dynamically loaded for active file: `snippets/structured-data-jewelry.liquid` (Domain: **Generic Logic**)
+> Dynamically loaded for active file: `config/settings_data.json` (Domain: **Config/Infrastructure**)
 
-### 📐 Generic Logic Conventions & Fixes
-- **[what-changed] Replaced auth SIHO**: -   SIHO CPH Advanced Structured Data
-+   SIHO CPH Advanced Structured Data - Comprehensive SEO Schema
-- {% endcomment %}
-+   Supports: JewelryStore, WebSite, Product, Collection, Article, FAQ, Breadcrumb
-- 
-+ {% endcomment %}
-- {% if request.page_type == 'index' %}
-+ 
--   <script type="application/ld+json">
-+ {%- comment -%}=== HOMEPAGE: JewelryStore + WebSite + Organization ==={%- endcomment -%}
--     {
-+ {% if request.page_type == 'index' %}
--       "@context": "https://schema.org",
-+   <script type="application/ld+json">
--       "@type": "JewelryStore",
-+     {
--       "name": "{{ shop.name }}",
-+       "@context": "https://schema.org",
--       "url": "{{ shop.url }}",
-+       "@type": "JewelryStore",
--       {% if settings.logo != blank %}
-+       "name": "{{ shop.name }}",
--         "logo": "{{ settings.logo | image_url: width: 500 }}",
-+       "url": "{{ shop.url }}",
--       {% endif %}
-+       {% if settings.logo != blank %}
--       "description": "{{ shop.description | escape }}",
-+         "logo": "https:{{ settings.logo | image_url: width: 500 }}",
--       "address": {
-+         "image": "https:{{ settings.logo | image_url: width: 1200 }}",
--         "@type": "PostalAddress",
-+       {% endif %}
--         "addressLocality": "Copenhagen",
-+       "description": "{{ shop.description | escape | default: 'Elegante smykker i 925 sterling sølv og 18K guld. Dansk design fra København.' }}",
--         "addressCountry": "DK"
-+       "telephone": "{{ settings.social_twitter_link | default: '' }}",
--       },
-+       "priceRange": "$$",
--       "sameAs": [
-+       "currenciesAccepted": "DKK",
--         "{{ settings.social_instagram_link }}",
-+       "paymentAccepted": "Kreditkort, MobilePay, Visa, Mastercard",
--         "{{ settings.social_facebook_link }}"
-+       "address": {
--       ]
-+         "@type": "PostalAddress",
--     }
-+         "addressLocality": "København",
--   </script>
-+         "addressRegion": "Hovedstaden",
-- {% endif %}
-+         "addressCountr
-… [diff truncated]
-- **[trade-off] trade-off in jewelry-icons.liquid**: -   SIHO CPH Jewellery Icons - Horizon Native
-+   SIHO CPH Jewellery Icons - Elegant & Refined
--       <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.5"/>
-+       <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.25"/>
--       <path d="M12 7V17M7 12H17" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-+       <path d="M8.5 12.5C8.5 12.5 10 15 12 15C14 15 15.5 12.5 15.5 12.5" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
--       <path d="M15.5 8.5L8.5 15.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-+       <text x="12" y="10.5" text-anchor="middle" fill="currentColor" font-size="5" font-weight="600" font-family="system-ui">925</text>
--       <rect x="5" y="7" width="14" height="10" rx="1" stroke="currentColor" stroke-width="1.5"/>
-+       <rect x="4" y="8" width="16" height="8" rx="2" stroke="currentColor" stroke-width="1.25"/>
--       <path d="M9 10L12 13L15 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-+       <path d="M8 8V6a4 4 0 0 1 8 0v2" stroke="currentColor" stroke-width="1.25" stroke-linecap="round"/>
--     </svg>
-+       <circle cx="12" cy="12" r="1.5" fill="currentColor" opacity="0.6"/>
--   {% when 'diamond' %}
-+     </svg>
--     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-+   {% when 'diamond' %}
--       <path d="M12 3L20 9L12 21L4 9L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-+     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
--       <path d="M4 9H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-+       <path d="M12 2L4 9L12 22L20 9L12 2Z" stroke="currentColor" stroke-width="1.25" stroke-linejoin="round"/>
--       <path d="M8 9L12 21L16 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-l
-… [diff truncated]
-- **[decision] Optimized Tidl**: -   assign og_description = page_description | default: shop.description | default: "Tidløse og elegante smykker i 925 sterling sølv og 18K guld. Køb armbånd, halskæder og øreringe hos SIHO CPH."
-+   assign og_description = page_description | default: shop.description | default: "Tidløse og elegante smykker i 925 sterling sølv og 18K guld. Køb armbånd, halskæder, øreringe og ringe hos SIHO CPH. Dansk design, hurtig levering i Danmark."
--     assign og_title = product.title | append: " - " | append: brand_suffix
-+     assign og_title = product.title | append: " | Køb online - SIHO CPH"
--     assign og_title = collection.title | append: " " | append: brand_suffix
-+     assign og_title = collection.title | append: " | SIHO CPH - Smykker i sølv & guld"
--   elsif request.page_type == 'password'
-+     assign og_title = article.title | append: " | SIHO CPH Blog"
--     assign og_url = request.origin
-+   elsif request.page_type == 'blog'
--   endif
-+     assign og_title = blog.title | append: " | SIHO CPH Smykkeblog"
-- %}
-+   elsif request.page_type == 'password'
-- 
-+     assign og_url = request.origin
-- {%- if request.page_type == 'product' -%}
-+   elsif request.page_type == 'search'
--   <link rel="preload" as="image" href="{{ product.featured_media | image_url: width: 1200 }}" fetchpriority="high">
-+     assign og_title = "Søg i smykker | SIHO CPH"
-- {%- endif -%}
-+   endif
-- 
-+ -%}
-- <meta
-+ 
--   property="og:site_name"
-+ {%- comment -%} Robots meta - control indexing {%- endcomment -%}
--   content="{{ shop.name }}"
-+ {%- if request.page_type == 'search' or request.page_type == 'cart' or request.page_type == 'password' -%}
-- >
-+   <meta name="robots" content="noindex, nofollow">
-- <meta
-+ {%- elsif template contains 'customers' -%}
--   property="og:url"
-+   <meta name="robots" content="noindex, nofollow">
--   content="{{ og_url }}"
-+ {%- else -%}
-- >
-+   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-- <meta
-+ {%
-… [diff truncated]
-- **[what-changed] what-changed in jewelry-icons.liquid**: - {% endcase %}
-+   {% when 'care-brush' %}
-- 
-+     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-+       <path d="M6 18l4-4 4 4-4 4zM10 14l8-8M15 3l6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-+     </svg>
-+   {% when 'care-box' %}
-+     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-+       <path d="M21 8v11a2 2 0 01-2 2H5a2 2 0 01-2-2V8M1 3h22v5H1V3zM10 12h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-+     </svg>
-+   {% when 'care-water' %}
-+     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-+       <path d="M12 2.6L4.5 10c-3.3 3.3-3.3 8.7 0 12s8.7 3.3 12 0c3.3-3.3 3.3-8.7 0-12L12 2.6z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-+     </svg>
-+ {% endcase %}
-+ 
-- **[what-changed] Updated schema SIHO**: -     .faq-jewelry__answer p {
-+     .faq-jewelry__answer p,
--       font-size: 0.9rem;
-+     .faq-jewelry__answer {
--     }
-+       font-size: 0.9rem;
--   }
+### 🔴 Config/Infrastructure Gotchas
+- **gotcha in shared-context.json**: -     },
 +     }
-- </style>
-+   }
-- 
-+ </style>
-- {% schema %}
-+ 
-- {
-+ {% schema %}
--   "name": "SIHO FAQ - Smykker",
+-     {
++   ]
+-       "id": "44cbf955ee048ff3",
++ }
+-       "ts": "2026-04-06T22:23:55.122Z",
+-       "by": "tommygrundstad",
+-       "data": "rZO6jf+vpo8ZhHfGvhDRculmfwAuhHqS7SzewbUBsQI9+yh606W0RkBUgY/1hoxkkZPmK+yxbY26W0k6ZvSUAqf9xr5jYRiOuXmqA9ni3Fe5mt61Im6cbPRBqIWHR8PFWARDxs3BHznjMRUjO61HOFd0A4WtaI9SZm1BORwSB0AxhsAO6GJTp6Zw5axBmTc2mQvfcqcM6B5LQ0vdZNPJEVRjAY7sj3jHxF4qDBkXhxwSAM19qDOwrSHS2rGxNDvW0eySj+P8cVSRMJS0D4aFikGhi7+aYR4hKg/MpDfkcfVTNSq4W929y4zXbfRF7N+JvOQnDaZPAbfWQddCF8HMEMl/XRPwWQk4FHJFTgR3q7EVFSSVPcHPM6tv8Z28j5j+XfkwSicpB2OZLJbZG4d88vILIhZq6Idv9OFjGcH4Go2vfv0j2PwMa+byD5ejZ5NaAR5kF1nxWdsx8k5Dqi5d17T852DPD1tvKfSFUNBxZwlwIh5dYABiEy3fR3XqJ9ee/WnTnv97IETzHAyPCAzmxkZe3myBxUxUMFCoaunl/0NhLk08TGc8zEZIKPOuFEuNpUv2+kYma/L+ilGn1WLarFnXFoPoabH4hJa9tXCxbx+EyUzc4/ZDlok3TGNT/Ri/BSr9M+hLRvrS5gl8zfe1RIN/FKQWo9RxZoq5PEmUPSogf7rnL3sIoI7RzTSk266g56uUxKVo6DhwvD7FrT06QRaxARF5suPwuS3qe9cw/PbJkDdHWnHR1uT5xRLHZVZDz9RKGhh+RZJJaYvPbXz9QuCdqUwQlpvdZgYDxz2eziy/O1aOnPxb+3L9oMI/eLZcE3cYlyuYFjpv84ePqk0LKCgMyNLnia96XSwtmgc12YystLoraZTW74a/8HQV/R+Z7+oi0YIPl7333Osbsz3KHYKdHY5+2zZWrvPd71stORd/DGeqVsge2IH2X3bXKs/4WCnKx+dxGmTU8jq2OUWdLups5/ybsuu9SRhMlLmhCDvdjGeey95f4uE1i9W88pCnZMBqP53X9qB77sbtYJMI7NKPbC4KJEJiTmJi5245tbEvefIwIxLWT3vouvbzK4oxkP3q5Cjt0UzBPlTigmeueDpn/G3aluip3fwEMn8jMLeAjM1dly9qqJOB+sXjLjz33NrVpeCjwfHqKKHLfohxDorJ5Ks/a0/LRGfOM9YZ5to0uhEGZF4qSEW38qHHTAiPosEJvDxAsHbejkJjlkzjAwRoYAmgdBd66Suesza2VLW7Y7WlgJyukj55MnqYua40e2dSD2kkc/KOcRA2rewR7Ewfdbfhp5/wWjirPRjW7A9fxgKy9TnbEyPoNeQPSCQX5KcZFgyOfkuyuJhMr9R7VTpgNu2Fo9eJ2Gp+Tu0WWHQUcutKDywEijvEKu9dga4ZjtP5+MU09EyFyMJ9LfGkqF2RNafb/XfCmn7WifOzy2Kxyauwd4jjAEXFyHDGsAmXsvs3/Dpuqvf2EbgqSzGXcJ2aAGQxems8BLl4r43XyWTBhM73iX6niVgDd+z6MKiTKQ7XLbCRwvJofZTRzxqkIFwn2xdePOkSQIBqIIvFcifmrffk87yJXncXWTyshjTiXB2DAkUau/yaY/gyNw1yEGvCow7L7hfaHoX+wE82/vnrsKBAa3NpndBgaWB2SUG2yIaOB4PICC42u3Oj1vUwtCHr7NgSSmDAZMkyRuLDziLMT52NkdJTKejngT7mJO6r/yluaxp23EKKd/UKHiKHjfexo/wNQSdlFmZJpfNUBjHIjEpkFizZHmYGnVyJlsj7tJ/BcpidN5cjJfA1I3P7vQqdr0bTZOyYm+vxwEL7QKAlIMh6
+… [diff truncated]
+
+📌 IDE AST Context: Modified symbols likely include [v, entries]
+
+### 📐 Config/Infrastructure Conventions & Fixes
+- **[what-changed] what-changed in settings_data.json**: -     "page_transition_enabled": true,
++     "page_transition_enabled": false,
+
+📌 IDE AST Context: Modified symbols likely include [current, presets]
+- **[what-changed] Updated schema Default**: -  {
 + {
--   "class": "section-wrapper",
-+   "name": "SIHO FAQ - Smykker",
--   "settings": [
-+   "class": "section-wrapper",
--     {
-+   "settings": [
--       "type": "header",
-+     {
--       "content": "Layout"
-+       "type": "header",
--     },
-+       "content": "Layout"
--     {
-+     },
--       "type": "select",
-+     {
--       "id": "section_width",
-+       "type": "select",
--       "label": "Bredde",
-+       "id": "section_width",
--       "options": [
-+       "label": "Bredde",
--         { "value": "page-width", "label": "Sidebredde" },
-+       "options": [
--         { "value": "full-width", "label": "Fuld bredde" }
-+         { "value": "page-width", "label": "Sidebredde" },
--       ],
-+         { "value": "full-width", "label": "Fuld bredde" }
--       "default": "page-width"
-+       ],
--     },
-+       "default": "page-width"
--     {
-+     },
--       "type": "header",
-+     {
--       "content": "Indhold"
-+       "type": "header",
--     },
-+       "content": "Indhold"
--     {
-+     },
--       "type": "text",
-+     {
--       "id": "title",
-+       "type": "text",
--       "label": "Titel",
-+       "id": "title",
--       "default": "Ofte stillede spørgsmål"
-+       "label": "Titel",
--     },
-+       "default": "Ofte stillede spørgsmål"
--     {
-+     },
--       "type": "text",
-+     {
--       "id": "subtitle",
-+       "type": "text",
--       "label": "Undertitel",
-+       "id": "subtitle",
--       "default": "Alt hvad du har brug for at vide om vores smykker"
-+       "label": "Undertitel",
--     },
-+       "default": "Alt hvad du har brug for at vide om vores smykker"
--     {
-+     },
--       "type": "header",
-+     {
--       "content": "Udseende"
-+       "type": "header",
--     },
-+       "content": "Uds
+-     "logo_height": 36,
++     "logo": "shopify://shop_images/IMG_3502.png",
+-     "logo_height_mobile": 28,
++     "logo_height": 53,
+-     "type_body_font": "inter_n4",
++     "logo_height_mobile": 28,
+-     "type_subheading_font": "inter_n5",
++     "favicon": "shopify://shop_images/IMG_3502.png",
+-     "type_heading_font": "inter_n7",
++     "type_body_font": "inter_n4",
+-     "type_accent_font": "inter_n7",
++     "type_subheading_font": "inter_n5",
+-     "type_size_paragraph": "14",
++     "type_heading_font": "inter_n7",
+-     "type_line_height_paragraph": "body-loose",
++     "type_accent_font": "inter_n7",
+-     "type_font_h1": "heading",
++     "type_size_paragraph": "14",
+-     "type_size_h1": "56",
++     "type_line_height_paragraph": "body-loose",
+-     "type_line_height_h1": "display-tight",
++     "type_font_h1": "heading",
+-     "type_letter_spacing_h1": "heading-normal",
++     "type_size_h1": "56",
+-     "type_case_h1": "none",
++     "type_line_height_h1": "display-tight",
+-     "type_font_h2": "heading",
++     "type_letter_spacing_h1": "heading-normal",
+-     "type_size_h2": "48",
++     "type_case_h1": "none",
+-     "type_line_height_h2": "display-tight",
++     "type_font_h2": "heading",
+-     "type_letter_spacing_h2": "heading-normal",
++     "type_size_h2": "48",
+-     "type_case_h2": "none",
++     "type_line_height_h2": "display-tight",
+-     "type_font_h3": "heading",
++     "type_letter_spacing_h2": "heading-normal",
+-     "type_size_h3": "32",
++     "type_case_h2": "none",
+-     "type_line_height_h3": "display-normal",
++     "type_font_h3": "heading",
+-     "type_letter_spacing_h3": "heading-normal",
++     "type_size_h3": "32",
+-     "type_case_h3": "none",
++     "type_line_height_h3": "display-normal",
+-     "type_font_h4": "heading",
++     "type_letter_spacing_h3": "heading-normal",
+-     "type_size_h4": "24",
++     "type_case_h3": "none",
+-     "type_line_height_h4": "display-tight",
++     "type_font_h4": "heading",
+-     "type_font_h5": "sub
 … [diff truncated]
-- **[what-changed] Updated schema SIHO**: -   .faq-jewelry__answer p {
-+   .faq-jewelry__answer p,
--     margin: 0;
-+   .faq-jewelry__answer {
--     font-size: 0.95rem;
-+     margin: 0;
--     line-height: 1.7;
-+     font-size: 0.95rem;
--     opacity: 0.7;
-+     line-height: 1.7;
--   }
-+     opacity: 0.7;
-- 
-+   }
--   @media screen and (max-width: 749px) {
-+ 
--     .faq-jewelry__header {
-+   .faq-jewelry__answer p:first-child {
--       margin-block-end: 32px;
-+     margin-block-start: 0;
--     }
-+   }
--     .faq-jewelry__question {
-+   .faq-jewelry__answer p:last-child {
--       font-size: 0.95rem;
-+     margin-block-end: 0;
--       padding-block: 16px;
-+   }
--       gap: 16px;
-+ 
--     }
-+   @media screen and (max-width: 749px) {
-- 
-+     .faq-jewelry__header {
--     .faq-jewelry__answer {
-+       margin-block-end: 32px;
--       padding-inline-end: 24px;
-+     }
--       padding-block-end: 20px;
-+ 
--     }
-+     .faq-jewelry__question {
-- 
-+       font-size: 0.95rem;
--     .faq-jewelry__answer p {
-+       padding-block: 16px;
--       font-size: 0.9rem;
-+       gap: 16px;
--   }
-+ 
-- </style>
-+     .faq-jewelry__answer {
-- 
-+       padding-inline-end: 24px;
-- {% schema %}
-+       padding-block-end: 20px;
-- {
-+     }
--   "name": "SIHO FAQ - Smykker",
-+ 
--   "class": "section-wrapper",
-+     .faq-jewelry__answer p {
--   "settings": [
-+       font-size: 0.9rem;
--     {
-+     }
--       "type": "header",
-+   }
--       "content": "Layout"
-+ </style>
--     },
-+ 
--     {
-+ {% schema %}
--       "type": "select",
-+ {
--       "id": "section_width",
-+   "name": "SIHO FAQ - Smykker",
--       "label": "Bredde",
-+   "class": "section-wrapper",
--       "options": [
-+   "settings": [
--         { "value": "page-width", "label": "Sidebredde" },
-+     {
--         { "value": "full-width", "label": "Fuld bredde" }
-+       "type": "header",
--       ],
-+       "content": "Layout"
--       "default": "page-width"
+
+📌 IDE AST Context: Modified symbols likely include [current, presets]
+- **[convention] what-changed in shared-context.json — confirmed 3x**: -     }
 +     },
--     },
+-   ]
 +     {
--     {
-+       "type": "select",
--       "type": "header",
-+       "id": "section_width",
--      
+- }
++       "id": "e104d1ba6415267a",
++       "ts": "2026-04-06T22:33:55.089Z",
++       "by": "tommygrundstad",
++       "data": "oEF7WWX4exzqIpBvCltIaE5wEbnx/yVFGvXcDBVxDg1ygHaZh27aKJNESDoUYQWyHrju5ABovK85hZ6k1jlKjp0KZen4viCPrG50iGWJBfXNxwc985YerkqmUY3yNKpqSGx/w4E6T9WAJvtuXzwtcG3wH8ZgBgyh2N0KSAsqyAqoSQcu5b1LOThf672Iczki+e8wLuKAjhwP3ry90QXY8cfz81UhJ1QZd/Y+RoghFS8XLUoUmSX1poQmg8rnqOPGWIgSXNqRXd+go4fOvTObWsblDUFynlPzMl8aDtGJyRxlGB+YiPhoICdo3TRrxIqy2z5cI+us/RDxALOAkFsXFGb2hPZ7in8P61z8aLTk+Wnr2lCwlZy1OYiKNFcLER82QBam2tckD32PYwPH97T5xRKNbhYi06kj817bmHlGbjz4Vs4LZ5Ko7RhNnN0rYQi6SwiWa2lBY2Cxv543NFA0z4cfGpM2+wg56JdmQ82OKvrlQ2OU+5fq6wO39eb6LzctWYAs6TCq/r1IUl3EInkwwqOjct/gdqMvF4qM8Fy5AZ0ihGKtNXezOU1RvKrpXI6ClRar2JMGBHKz+SvjhmnaiQM4TIXNvsoHnDrwfVyJ4m0WbqwmQoKGwFEzSuB7IsrJC3vHRxWh30Ogx7QKS7I9MoypdGDNSDimJSjge1s6g6+eF6/75M6WiwTcqHVE20PJg92FjFUadRjlWxgGkloSJTYQWUIyIhkgicfTJDKGJ2t1TqzXcUs6JUisazzKoWXv2AvhW/2Ct4jgBPQ4EvFzJyqfQcyAGO7Q/9/9eTQoU/t5rbdw1/M38hAfYgDHlACnTrudG6sgIpskSWA+7eXMscNGLbvyi+HJE0PMhYZnSt4JeccSkLRL6AKZwH9AvV+AppoaMIByNHfVmOBpO1qINMiuopIA8QcTazEL77RgSUz25Euh9VWCGfy2tCmJN/F7z3pv2ZDs65oez98w14bmatrNlCNhJ+S2ZlwMxN49g4E7xpYYwddZta8VOEGpy0Tf+wp4UBv1SlEhmqmiyER0Plz1z5LwgvOHi6kropr0JKUQlsAX528uJUxvUMgPsVfkbcPWyyQ1ol5eKwaMbb9xCgI+6hih6hgptcgqYwJD8BAB89uzSahtLM2bFIkpA+lOZZu9rdd723kUv+tdKos876+fe+9TH7REbB+jNEoFzv2QTUbRrI9UEU2NWCQ5Ash1yG0hK+wdwhnFnuVCSUNnokJ2Xp+mQYbN+MDPp4eby6snp3Bb38Wp7biiFchGxYua6CZpCsI3ttyNAmVi+NNv1S0qoBH4zxINJjPdjFt5ogAMKgEBAjj/YpzIL801456W+KlUDvoc0dCFBGDrgiZFDqIzreZKuHtR/WLNZR/EnuJu+glK4PZm8UBlLr3CsBJQbfZ0TwP2rZGMTfIuphENkxczVcQhmzLcUQrbTbJQ5oXTWXGyx7Rwb73ApYq/O6hTSN3RYB6Qe8+91jK26tfhWQtJeIK7/ATSECYykksNf9ObG9XgyjaPDxRyoNjBXXIQPNh+z4XVJZk0oypwoqH80BqUqzQbVmRu/Yra37XN1DA3Qb6G8LLbWevpYGKrGp8TphwTv3Y+S9mtaoTdz9GsQZpiTiEXZ/ZWW8LKQdc88rPteZMxHMUyEWzW0keVWn1SXL1QSHg2vS8akMmd1wopZNIPji0U8lG1oyqFaWuR6gLLolARKvBZIWFxUZ2JXpbCP12yQggng5zr+otdNUoHTmToZbWtu/8Bt+vRxe14IgOdPKp1d/wao1pWduxqOR47GYZ7JD8I22hybOdlvewS9KWcyrDH/QVau1LL4lj3EMy0X6FU
 … [diff truncated]
-- **[what-changed] Updated configuration faq-jewelry**: -           <div class="faq-jewelry__answer">
-+           <div class="faq-jewelry__answer rte">
--             <p>{{ block.settings.answer }}</p>
-+             {{ block.settings.answer }}
-- **[convention] Updated schema Tablet — confirmed 3x**: -     width: 52px;
-+     width: 56px;
--     height: 52px;
-+     height: 56px;
--     background: rgba(var(--color-foreground-rgb), 0.04);
-+     background: rgba(var(--color-foreground-rgb), 0.05);
--     transition: transform 0.3s ease, background 0.3s ease;
-+     transition: transform 0.35s ease, background 0.35s ease, box-shadow 0.35s ease;
--     transform: scale(1.05);
-+     transform: scale(1.08);
--     background: rgba(var(--color-foreground-rgb), 0.07);
-+     background: rgba(var(--color-foreground-rgb), 0.08);
--   }
-+     box-shadow: 0 4px 20px rgba(var(--color-foreground-rgb), 0.06);
-- 
-+   }
--   .trust-signal__icon {
-+ 
--     width: 24px;
-+   .trust-signal__icon {
--     height: 24px;
-+     width: 26px;
--     color: var(--color-foreground);
-+     height: 26px;
--     opacity: 0.8;
-+     color: var(--color-foreground);
--   }
-+     opacity: 0.75;
-- 
-+   }
--   .trust-signal__content {
-+ 
--     display: flex;
-+   .trust-signal__content {
--     flex-direction: column;
-+     display: flex;
--     gap: 2px;
-+     flex-direction: column;
--   }
-+     gap: 2px;
-- 
-+   }
--   .trust-signal__title {
-+ 
--     margin: 0;
-+   .trust-signal__title {
--     font-size: 0.95rem;
-+     margin: 0;
--     font-weight: 600;
-+     font-size: 0.95rem;
--     letter-spacing: -0.01em;
-+     font-weight: 600;
--     line-height: 1.3;
-+     letter-spacing: -0.01em;
--   }
-+     line-height: 1.3;
-- 
-+   }
--   .trust-signal__text {
-+ 
--     margin: 0;
-+   .trust-signal__text {
--     font-size: 0.82rem;
-+     margin: 0;
--     opacity: 0.55;
-+     font-size: 0.82rem;
--     line-height: 1.5;
-+     opacity: 0.55;
--     letter-spacing: 0.01em;
-+     line-height: 1.5;
--   }
-+     letter-spacing: 0.01em;
-- 
-+   }
--   /* Tablet: 2 columns */
-+ 
--   @media screen and (max-width: 989px) and (min-width: 750px) {
-+   /* Tablet: 2 columns */
--     .trust-signals {
-+   @media screen and (max-width: 989px) and (min-width: 750px) {
--       grid-template-columns: repeat(2, 1fr);
-+     .trust-signals {
--     }
-+    
-… [diff truncated]
-- **[what-changed] Updated schema main-collection**: -     {% content_for 'block',
-+     {% render 'collection-seo-description', collection: collection %}
--       type: 'filters',
-+ 
--       id: 'filters',
-+     {% content_for 'block',
--       results: collection,
-+       type: 'filters',
--       results_size: collection.products_count
-+       id: 'filters',
--     %}
-+       results: collection,
-- 
-+       results_size: collection.products_count
--     {% assign products_per_page = 24 %}
-+     %}
--     {% if section.settings.enable_infinite_scroll == false %}
-+     {% assign products_per_page = 24 %}
--       {% assign products_per_page = section.settings.products_per_page %}
-+ 
--     {% endif %}
-+     {% if section.settings.enable_infinite_scroll == false %}
-- 
-+       {% assign products_per_page = section.settings.products_per_page %}
--     {% paginate collection.products by products_per_page %}
-+     {% endif %}
--       {% capture children %}
-+ 
--         {% for product in collection.products %}
-+     {% paginate collection.products by products_per_page %}
--           <li
-+       {% capture children %}
--             id="{{ section.id }}-{{ product.id }}"
-+         {% for product in collection.products %}
--             class="product-grid__item product-grid__item--{{ forloop.index0 }}"
-+           <li
--             data-page="{{ paginate.current_page }}"
-+             id="{{ section.id }}-{{ product.id }}"
--             data-product-id="{{ product.id }}"
-+             class="product-grid__item product-grid__item--{{ forloop.index0 }}"
--             ref="cards[]"
-+             data-page="{{ paginate.current_page }}"
--           >
-+             data-product-id="{{ product.id }}"
--             {% # theme-check-disable %}
-+             ref="cards[]"
--             {% content_for 'block', type: '_product-card', id: 'product-card', closest.product: product %}
-+           >
--             {% # theme-check-enable %}
-+             {% # theme-check-disable %}
--           </li>
-+             {% content_for 'block', type: '_product
-… [diff truncated]
-- **[what-changed] Updated schema SIHO**: -   "name": "SIHO Jewellery Care",
-+   "name": "SIHO Smykkepleje",
--     /* ... (settings remain same) ... */
-+     {
--   ],
-+       "type": "header",
--   "blocks": [
-+       "content": "Layout"
--     {
-+     },
--       "type": "tip",
-+     {
--       "name": "Care Tip",
-+       "type": "select",
--       "settings": [
-+       "id": "section_width",
--         {
-+       "label": "Bredde",
--           "type": "select",
-+       "options": [
--           "id": "icon_type",
-+         { "value": "page-width", "label": "Sidebredde" },
--           "label": "Icon Type",
-+         { "value": "full-width", "label": "Fuld bredde" }
--           "options": [
-+       ],
--             { "value": "care-brush", "label": "Cleaning Brush" },
-+       "default": "page-width"
--             { "value": "care-box", "label": "Jewellery Box" },
-+     },
--             { "value": "care-water", "label": "Water/Cleaning" },
-+     {
--             { "value": "waterproof", "label": "Waterproof" },
-+       "type": "header",
--             { "value": "silver", "label": "Silver Care" }
-+       "content": "Udseende"
--           ],
-+     },
--           "default": "care-brush"
-+     {
--         },
-+       "type": "color_scheme",
--         {
-+       "id": "color_scheme",
+
+📌 IDE AST Context: Modified symbols likely include [v, entries]
+- **[what-changed] what-changed in collection.jewelry.json**: File updated (external): templates/collection.jewelry.json
+
+Content summary (272 lines):
+{
+  "sections": {
+    "section": {
+      "type": "section",
+      "blocks": {
+        "text_title": {
+          "type": "text",
+          "name": "Titel",
+          "settings": {
+            "text": "<h1>{{ closest.collection.title }}</h1>",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "",
+            "line_height": "normal",
+       
+- **[what-changed] what-changed in page.about.json**: File updated (external): templates/page.about.json
+
+Content summary (140 lines):
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Titel",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_sp
+- **[what-changed] what-changed in page.faq.json**: File updated (external): templates/page.faq.json
+
+Content summary (173 lines):
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Titel",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "center",
+            "type_preset": "h2",
+            "font": "var(--font-body--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_sp
+- **[what-changed] what-changed in product.jewelry.json**: File updated (external): templates/product.jewelry.json
+
+Content summary (488 lines):
+{
+  "sections": {
+    "main": {
+      "type": "product-information",
+      "blocks": {
+        "media-gallery": {
+          "type": "_product-media-gallery",
+          "static": true,
+          "settings": {
+            "media_presentation": "grid",
+            "media_columns": "two",
+            "image_gap": 4,
+            "large_first_image": true,
+            "icons_style": "arrow",
+            "slideshow_controls_style": "counter",
+            "slideshow_mobile_controls_style": "dots",
+     
+- **[what-changed] what-changed in page.contact.json**: -                 "label": "Submit",
++                 "label": "Send besked",
+
+📌 IDE AST Context: Modified symbols likely include [sections, order]
+- **[what-changed] what-changed in product.json**: -             "text": "<h3>You may also like </h3>",
++             "text": "<h3>Du vil måske også kunne lide</h3>",
+
+📌 IDE AST Context: Modified symbols likely include [sections, order]
+- **[what-changed] Updated schema IMPORTANT**: - {
++ /*
+-   "sections": {
++  * ------------------------------------------------------------
+-     "hero_jVaWmY": {
++  * IMPORTANT: The contents of this file are auto-generated.
+-       "type": "hero",
++  *
+-       "blocks": {
++  * This file may be updated by the Shopify admin theme editor
+-         "text_YLPk4p": {
++  * or related systems. Please exercise caution as any changes
 -           "type": "text",
-+       "label": "Farveskema",
--           "id": "title",
-+       "default": "scheme-1"
--           "label": "Tip Title",
-+     },
--           "default": "Undgå kemikalier"
-+     {
--         },
-+       "type": "text",
--         {
-+       "id": "title",
--           "type": "textarea",
-+       "label": "Titel",
--           "id": "text",
-+       "default": "Pas godt på dine smykker"
--           "label": "Tip Text",
-+     },
--           "default": "Tag dine smykker af når du bruger parfume, lotion eller hårspray."
-+     {
--         }
-+       "type": "text",
--       ]
-+       "id": "subtitle",
--     }
-+       "label": "Undertitel",
--   ],
-+       "default": "Følg disse enkle trin for at bevare glansen i dine SIHO CPH smyk
-… [diff truncated]
-- **[what-changed] Updated schema SIHO**: -               {{- 'icon-checkmark-burst.svg' | inline_asset_content -}}
-+               {%- render 'jewelry-icons', icon: block.settings.icon_type -%}
--   .jewelry-care-header {
-+   /* ... (styles remain the same) ... */
--     text-align: center;
-+ </style>
--     max-width: 700px;
-+ 
--     margin: 0 auto 50px;
-+ {% schema %}
--     display: flex;
++  * made to this file may be overwritten.
+-           "name": "t:names.heading",
++  * ------------------------------------------------------------
+-           "settings": {
++  */
+-             "text": "<h3>Tidløse smykker til enhver anledning</h3>",
 + {
--     flex-direction: column;
-+   "name": "SIHO Jewellery Care",
--     gap: 12px;
-+   "class": "section-wrapper",
--   }
-+   "settings": [
-- 
-+     /* ... (settings remain same) ... */
--   .care-tips-grid {
-+   ],
--     display: grid;
-+   "blocks": [
--     grid-template-columns: repeat(2, 1fr);
-+     {
--     gap: 40px;
-+       "type": "tip",
--     width: 100%;
-+       "name": "Care Tip",
--   }
-+       "settings": [
-- 
-+         {
--   .care-tip-title {
-+           "type": "select",
--     display: flex;
-+           "id": "icon_type",
--     align-items: center;
-+           "label": "Icon Type",
--     gap: 12px;
-+           "options": [
--     margin-bottom: 8px;
-+             { "value": "care-brush", "label": "Cleaning Brush" },
--     font-weight: 600;
-+             { "value": "care-box", "label": "Jewellery Box" },
--   }
-+             { "value": "care-water", "label": "Water/Cleaning" },
-- 
-+             { "value": "waterproof", "label": "Waterproof" },
--   .care-tip-icon {
-+             { "value": "silver", "label": "Silver Care" }
--     color: var(--color-foreground);
-+           ],
--     width: 24px;
-+           "default": "care-brush"
--     height: 24px;
-+         },
--     opacity: 0.8;
-+         {
--   }
+-             "width": "fit-content",
++   "sections": {
+-             "max_width": "normal",
++     "hero_jVaWmY": {
+-             "alignment": "left",
++       "type": "hero",
+-             "type_preset": "h2",
++       "blocks": {
+-             "font": "var(--font-body--family)",
++         "text_YLPk4p": {
+-             "font_size": "1rem",
 +           "type": "text",
-- 
-+           "id": "title",
--   .care-tip-text {
-+           "label": "Tip Title",
--     margin: 0;
-+           "default": "Undgå kemikalier"
--     line-height: 1.6;
-+         },
--     opacity: 0.85;
-+         {
--   }
-+           "type": "textarea",
-- 
-+           "id": "text",
--   @media screen and (max-width: 749px) {
-+           "label": "Tip Text",
--     .care-tips-grid {
-+           "
+-             "line_height": "normal",
++           "name": "t:names.heading",
+-             "letter_spacing": "normal",
++           "settings": {
+-             "case": "none",
++             "text": "<h3>Tidløse smykker til enhver anledning</h3>",
+-             "wrap": "pretty",
++             "width": "fit-content",
+-             "color": "var(--color-foreground-heading)",
++             "max_width": "normal",
+-             "background": false,
++             "alignment": "left",
+-             "background_color": "#00000026",
++             "type_preset": "h2",
+-             "corner_radius": 0,
++             "font": "var(--font-body--family)",
+-             "padding-block-start": 0,
++             "font_size": "1rem",
+-             "padding-block-end": 0,
++             "line_height": "normal",
+-             "padding-inline-start": 0,
++             "letter_spacing": "normal",
+-             "padding-inline-end": 0
++             "case": "none",
+-           },
 … [diff truncated]
-- **[what-changed] Updated schema Specifikationer**: -   style="{% render 'spacing-style', settings: block_settings %}"
-+   style="
--   {{ block.shopify_attributes }}
-+     --summary-font-family: var(--font-{{ block_settings.type_preset }}--family);
-- >
-+     --summary-font-weight: var(--font-{{ block_settings.type_preset }}--weight);
--   <details class="jewelry-specs__details" {% if block_settings.open_by_default %}open{% endif %}>
-+     --summary-font-size: var(--font-{{ block_settings.type_preset }}--size);
--     <summary class="jewelry-specs__summary h6">
-+     --summary-font-case: var(--font-{{ block_settings.type_preset }}--case);
--       <span>{{ block_settings.heading | default: 'Specifikationer' }}</span>
-+     {% render 'spacing-style', settings: block_settings %}
--       <span class="jewelry-specs__icon">
-+   "
--         <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-+   {{ block.shopify_attributes }}
--           <path d="M5 7.5L10 12.5L15 7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-+ >
--         </svg>
-+   <details class="jewelry-specs__details" {% if block_settings.open_by_default %}open{% endif %}>
--       </span>
-+     <summary class="jewelry-specs__summary">
--     </summary>
-+       <span class="jewelry-specs__heading">{{ block_settings.heading | default: 'Specifikationer' }}</span>
--     <div class="jewelry-specs__content">
-+       <span class="jewelry-specs__arrow svg-wrapper">
--       <ul class="jewelry-specs__list">
-+         {{- 'icon-caret.svg' | inline_asset_content -}}
--         {% if block_settings.material != blank or product.metafields.custom.material != blank %}
-+       </span>
--           <li class="jewelry-specs__item">
-+     </summary>
--             <span class="jewelry-specs__label">Materiale:</span>
-+     <div class="jewelry-specs__content">
--             <span class="jewelry-specs__value">
-+       <div class="jewelry-specs__table">
--               {% if product.metafields.custom.materia
+
+📌 IDE AST Context: Modified symbols likely include [sections, order]
+- **[what-changed] what-changed in index.json**: -                 "label": "Se alle",
++                 "label": "Se alle smykker",
+
+📌 IDE AST Context: Modified symbols likely include [sections, order]
+- **[discovery] discovery in shared-context.json**: -     }
++     },
+-   ]
++     {
+- }
++       "id": "709d0508656ec53c",
++       "ts": "2026-04-06T22:09:18.037Z",
++       "by": "tommygrundstad",
++       "data": "0ZuGAAjpjbrLWfj4EEl0vJ4ZQUs0f/qV30/Uu+yo+d3WF3qU3uyRMtzEv8Qao3sh8UEuJip+YtPYwa+DrUO5pF7UaI32fTGf43QDyCzDwFyNi+CBK1xxdXNuY0cB11UkBuTh5jmWLvT2lvVAn1Dn79lsjiz2cuzJE68ntJgkWlk46EmVAt9Ael4z4sTyVymZJJijwPYF9+CkDk1RLSIbuTzMfznxuNNJpKLVD7w+AH89IcfopoAYIpwXPvxEJdoHj8ok9D5IJUUeL4GEGqZ4imncMkBn5Q8T6cE7CcULjGoceZ3WJU8OH4HnTiLyS2IKyAmre3wIiXsHRHJxpwausnlnnRWiX2XlVKz6k5WINS79DhUJQUxk41ZUWvzphivP0OUOtTxdEesGvuDKCkJ/LOBaz7vTGMtp7MLa6vVLzK+plFQG/3sYMD7IbP1WUvKKDei/BnbBklv8yGJWP2L1eFH8Ts4uFFmQWk3VNw0c/YytpK6QEsKzFdUNguhKp0dj8rT7kBcnBlB29UA8RcsNbkasNVsDc52JrVnqwxJoxwnOiN8PiP8gOJQDkEY5TROJfz3m9MnKua2cmAxAt4S8v6DWrUZ7j7OtzhySmzl4XCFO3FidwKVdFntBaGwmII622cEcpGZx9wPWzwCrJq62G+KzBvtEgjCL9Q4lv3JMUAzp5YRpH2ThdyNkVvdRHFUotM4AqIKc5xTTCSNo5nQkzx7BsnMsCZ1DddMg0zpMOMm4MwCGTQwkkxD7RlVTF5Nd77JEwk7ZKRW49BkWvQUfEjPecL6Q0ltBPFrIJ05EXAhMw4/PGxBC9xk1hzPUKrxT4Gtdj5+KxUZPAFDqnca7YIaRb0ofarwXZruT7eqEzhYTWn5vwbskQqQSa/0ahQgerQB1ocptyzA0HdMn1fIi1WJu/250QwaHttBmihVxj5rMiwmGL3mAyda9zqxQYvwPEG5qec3A5N8JdmDKOW+Yd0ppVEypRP2tDEkg4deMOaATRHVlN7wTyu7LkaF6QLiRVB8bnF2ZYDck5shJR5u5dMMVp68N6wTeXsAZyBqtMYyaic7JeOt28vzUrL3qkmj+fmgXDg23wQf0D4o50CKlSWrf2tvH02pwnfP48ykSKP7kx2316FZV7uDXRmLoXRcN7IiQF5RlR6TnRl7POUNzaBEZ35AftYcu4eFMrfO3fm0pf5PVNzYNQGA4NrvZSN64WU3He2kAePzmsP/q9zZk8HPpQ9RqL92ZuQnVB4uxeE0HF6s6+dtro6ZS39KoIyD2FE5w4l/xA30nzoxKemlETfwddVQctIWpbWEErS3cSWpdX22+adiJElGmS5pVACv0MKT8Iq9h4+7MKtOLn6rDxN71LjIxuUA1R+/SaxORkEKGLYd4U0NueCw5tGGP8D8ci/ZWbV9liCIxYs9lXYr9RQtGKThbP6Y6iU7cw6AA7BOcjHad2zY3gIN3AS0JvmpMlW4HbPMUXL8E7rK86xq6Ix25Ec4TPCimHESvm9Bi2oVJhMqGx3DsWBNChbj3OOuvg7Zc1UveBefKTH5tijvAnyEBdS2hC5QCp1yi9zyy9CTkfAc7T89/4MNQEH5c5nSemF8hRwDTLH+g9preMqOtoXqPFVPqwvH4MnHu8Z5zgnb29+ABoHutf3P3H8+6jASPuCGvHrmXaxqmF0XAxniD0hF7zDpi3g2uwowYhkMWXfwNP6bqmT6d7YaLCMjwzpszGqVyqLVYwU40Zz+SP3K4ezjOJB9cWABi6quD7pLTttIuvSxFgVc24MLxcJFfLLPrURpWMwayHJD2811VHs/OdzBzl06IxVJMU7UPUP66iXorisqT
 … [diff truncated]
+
+📌 IDE AST Context: Modified symbols likely include [v, entries]
+- **[convention] what-changed in shared-context.json — confirmed 4x**: -     }
++     },
+-   ]
++     {
+- }
++       "id": "7d5ecd49668988ef",
++       "ts": "2026-04-06T22:03:40.386Z",
++       "by": "tommygrundstad",
++       "data": "gXbsW9w7GkPJQssn6BLj/d7OiJEh/3CIJDknO08cuqZFp3/xG/i1Z/zJghLwx01Nfn9RFjZh32zEts8HZnpttg110EbwnkPGAlgIjIH2ydHtP9D24spslTMVfD6x2RS6tLqQub9dknC4Z/2ZUn6HV5GXfCctPOjLsU9oFaFsHHJ8oXhRDT3lGhhXZN3lVVBQTKnjRFGOQwax3+oixwGgvloMf6dKXG4THZZssIVV6Auu7t0tcSaG0YQC6tZYM/R03UOsiBl57MvSoEPOUEkGfNKEaBmzqmIusbohL3KXWV1LCLYWgGkoIBCjIc4i/cNsPxf0R/i8Wz5i+tW3VWbtl7zJn8c2DcNVywGIpPS6yFYJqGQOP+oSKZ/TvCANqgQfGHDVS1thZxKPUu7L8QB+828uRTz26QZHiEDyWuKRbRP590LS4pUxAGnVAYhTcFM8q9inkhCn3WIrYUy0uwKpFNmBBfvvsb3qx4DWfgDqcSwkdeCXQcs9BQsnDXrY/xLBOCWyKjXajEDqXpIDijE3pEPX99HEF4oGi1/UFYCTIjTu9iT9SjIaRJKljwnl2JmggxDfYQx/ipcCbeqi8mUbp23FmoXehAtkwEli9oOHOAPh7uTQ8fpZR6j8iosBpuuusINRr6KEGH/aCzEHtum+kY0CYmZeLxraPDXOc0CeqAsEetnQAX7jiHrGRf6hwQMD54oeZ/OqeCyRqdd50sZ7ggaySYbjOnPS626KWi/Xf7HQ8xrfvzjhC7AyOHrLMIIiobJ8Mw7v+xjbssEih1kihzsiEuNflP+dD160ARUlZybNuvLh41V4n10l0AlXokhlpW0d4PpnY/OfDSVtw4Z4Pp4eNu51k5cWpAsDDKqaXlG6Gv4pQWWLSdvMv8D4nNYbT3s71+VFY11bpLJwwMHLOWR9thtZy40S9qRAnIW2fekeP1vmF3WJr7jOchY40HlLdwyE+uzM7gbVxjFxtlNAJckUP22EY7eMCNivw9xM3Qct3PO7zENcIbAFraE5kjR5RkbArySQQ4cjyjNtX0ccFD8MWMqqHlgcDvr82zIKG+T7iKGdusIGetcPTXa9Xx3+qm+AzoyM7zKwzILJ3G9VoyhAUNEt2WcnC+omFR9mBQGV/ZHYH3ZZUVgSRu0nuCdv1ZcJ8vWvXFlRJPS4t/gydsKoHjWG7lMoXID2Oh3k+V9nmUytk7z2erJ3QjYMCvjrgnZtpPll+mCScNLlIrfZGw/p3tUqHuVAOPB7f08mCFGrqNm9ajjETYclKVBdPMD4gNzGS5RasNFtwDnUR5cSGrCHDJr8Z1qynL1vOMiQTMqGPewmEsGt1NW4EjuFr8NXLGl5Zlb6smUdV3Td8aHpO4oJ5dsTtdD0gjWb6F+bBkC7+AoV/+2OjQGj1fjL0IZU1wE96MsKnHEFwZVtB739GLBcIJNP+S6RC0G0k/CmdhEjd25Hhhwt/gE4gikG0mm5gbCwVZcOH2qd+Yp9d35ubsd/Kmf7f3hsZXgs7C2jF8RqWpU+mcqo40zErP34dUDerTWfuuG+0jJIVkOf6AOQP+MF71goMNabZs0j3NbiYBsAoclyByBdrIfjMF3YNRkp3eHuRUjHLvNHT9Rig88SA+nVBMmtSJQikKcIqCTnfwgsc6fhF986y2FgZN6Gb1RP1YdiH3jCG38Ix+vfnzi/m5lQR1OiqmSw294K+uBSyS+u+ruq3xbhreoOz9Yjey9A2jrBOna6ik3dnf18VnqyT0MDLqsZ4Mpim8F15ITguXRDlTODnHq/AeNXwHRllg7hkbl/BmfjY3IxaN0fsPlAOokVyeTNpvmXTIAS6e4Cl/bW1a28
+… [diff truncated]
+
+📌 IDE AST Context: Modified symbols likely include [v, entries]
+- **[problem-fix] Patched security issue IcXdTDoelSkSw**: -     }
++     },
+-   ]
++     {
+- }
++       "id": "52b00977bb060387",
++       "ts": "2026-04-06T22:03:38.268Z",
++       "by": "tommygrundstad",
++       "data": "VYxSanZslDcEtixa1xx/QGW9SXDQ+XX2rYGHgf9mH9Oa7xCHzuJA1yOn9t50qV8FhRTVsI+6e3MA1VBrJ9j7Q6Y2dHENb2MB002J6ymMN6ixUygZcBgyT2/x+3nAYdHAVcHZc53XbTb9FCOlimCokrWkfr2ex3GQ0/H6rxn569CGMKf2OvwbPV9fBU+EzUi7oy5YbPu7SlDw5dSD/fmA2PjW/MFIe64h1gFArC5YwJHR8351chqKFFoxJWlobJVeg7St1gB4OOpes/oeXFH28+LayWb6dXTjEkBdpiM/DXm5wXLV/WLTGtLTptZ3CNLgjDlWmfeUQSsXduWQrnDpzu87MUGANLnXvJMxvcsyIDy0QbRK/vk6xAwoIlFKrlf5eolYDoQOOfCaAXRtbccjQiqi8j2RAUiw/QTY90biXEqx5KHtpe8xfZlVttGM8sCt80zf8v5FnDT6MEuyU+IcXdTDoelSkSw+c/aJDo+GwDxPG7fO51rgeosL5/Fo204Gd9L7hVm96u3ZIghtuM5udY06j32n7IgjGXeyH8sfREixrZhHZy6G0Z0zm6ZU/nKFVMIhFgvPELoWBA3NeT2BRMW6WIcXsSlEpC0ErchOxTGckasGgHijg6eZcW7KLOk8xHdjs0gM0dgVvkjScYx3GmfsKJ1mAStqoPnWJF2X3YRC4kcX0cDWIvderwFKQN8hGndFkFQsnb3bhT/kWiVKNAww49FU/QbxlGPYqYN3NVw0Qy/kWqquVk2Sla9o6GecZMucjbBEsFkv2Ft3jfmu0Go/M2k04zpVZ2obUFp4jzLBM8NX76cbkRsHRaoBI2lHfIf9REXnlME0WZUtQ3/+QIAHoCWDNblxQYa0pr57x0vgqDPdfhcUxk17+/jnj5VXpW609lig8aUKVx3+ghtszjADLBEqLe2D4TZnVPt/bRl31r6gH6NL08QPGbBwGUQ9hWmumHqNOwZK93G9X+fTd5A4hAJ6vxNlTM59Fant7p8O3Yju2gSahJVMrHoFQ5HI9e91o1L6BprJKlQrYIVGsrKz7kc45oZeMwaJvs//UT1I9mpAFPEII8pcpDlsUEY2qrU2Q38+C1XpjO6SRxIKBoqzul4vkOsdVRyZlejk1kQxmwNrgNUApcuRnPGmXksDy5t0oMO30fs/q/VJBGx83/D5DcEmdHznZF6bWX0FgP+HGFzZcXyIeJtJMuXa5PHa6vhtrMKXTCffKsJHZnCVNVifJsoI3UszCHv5d8JjJyZpo0e15LanxIFKS4Y8G1stloEDmA2IPqfIbrxPF2mUL0hQtLmKTM+wKRsDLz031Eua9nIcuuKtpgqeEL00k5z1/HK74qojs9UONO9D3EcBbo/oNPXJSQNhD1GDK4nhvNV9dztqMs99CcfSIjtnBte1Rrhc+tHRX07nrPYybjq4wtiq05N2l4NmcMga7jZACSgUDRJ5YZ24Mk+TKA9q0hqdHOd2Jj5/lHaudxlm3YV0ZTLfmY4XCk0hegp7Q4vXW1vmyAhiVm0/bbcZCgDf+1+LYtbQb/pey62DmK5VhvTegHp/FeP/2m2EdjJmaWP4YG3VhyEgOScm5nD+h3OgZAT1p4ULAmrYxUPyoXFwvyV5rWJ/IFgXrBhnTsA/IwHnsbcSbl44m0+N/YWz1VkX1DpOjXx43tjX6QuYCc8EI8hZfEuAVgp6ivq2egs+49H9tn8oWZ1N/1sj+yiFyK6BEOktgImEdeTk3Nw6nFYn1hq+oIFWbEVQjjyiPVE3/cscJLuoJT3UG+YXDmMow7J6QXeCIKazPdvr6gHFW68hWoDKsu1uIaingTX23kU51iKygSqfCoLv
+… [diff truncated]
+
+📌 IDE AST Context: Modified symbols likely include [v, entries]

@@ -33,6 +33,7 @@
     <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
 
     {%- render 'stylesheets' -%}
+    {{ 'premium-overrides.css' | asset_url | stylesheet_tag }}
     {%- render 'fonts' -%}
     {%- render 'scripts' -%}
     {%- render 'theme-styles-variables' -%}

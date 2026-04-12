@@ -1,0 +1,302 @@
+{%- capture children -%}
+  <div class="testimonials">
+    {%- if section.settings.title != blank -%}
+      <div class="testimonials__header">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="testimonials__eyebrow">{{ section.settings.eyebrow | escape }}</span>
+        {%- endif -%}
+        <h2 class="testimonials__title h3">{{ section.settings.title | escape }}</h2>
+      </div>
+    {%- endif -%}
+
+    <div class="testimonials__grid">
+      {%- for block in section.blocks -%}
+        <div class="testimonials__card" {{ block.shopify_attributes }}>
+          <div class="testimonials__stars" aria-label="{{ block.settings.rating }} ud af 5 stjerner">
+            {%- assign rating = block.settings.rating | times: 1 -%}
+            {%- for i in (1..5) -%}
+              <svg class="testimonials__star {% if i <= rating %}testimonials__star--filled{% endif %}" width="14" height="14" viewBox="0 0 24 24" fill="{% if i <= rating %}currentColor{% else %}none{% endif %}" stroke="currentColor" stroke-width="1.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            {%- endfor -%}
+          </div>
+          <blockquote class="testimonials__quote">
+            <p>{{ block.settings.quote | escape }}</p>
+          </blockquote>
+          <div class="testimonials__author">
+            <span class="testimonials__name">{{ block.settings.name | escape }}</span>
+            {%- if block.settings.product != blank -%}
+              <span class="testimonials__product">Købt: {{ block.settings.product | escape }}</span>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endcapture -%}
+
+{%- render 'section', section: section, children: children -%}
+
+<style>
+  .testimonials {
+    width: 100%;
+  }
+
+  .testimonials__header {
+    text-align: center;
+    margin-block-end: 48px;
+  }
+
+  .testimonials__eyebrow {
+    display: block;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    opacity: 0.4;
+    font-weight: 500;
+    margin-block-end: 14px;
+  }
+
+  .testimonials__title {
+    margin: 0;
+    letter-spacing: -0.025em;
+  }
+
+  .testimonials__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(var(--color-foreground-rgb), 0.06);
+    border-radius: calc(var(--style-border-radius) + 4px);
+    overflow: hidden;
+  }
+
+  .testimonials__card {
+    background: var(--color-background);
+    padding: 40px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    transition: background 0.35s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  .testimonials__card:hover {
+    background: rgba(var(--color-foreground-rgb), 0.015);
+  }
+
+  .testimonials__stars {
+    display: flex;
+    gap: 2px;
+    color: var(--color-foreground);
+    opacity: 0.75;
+  }
+
+  .testimonials__star {
+    opacity: 0.2;
+  }
+
+  .testimonials__star--filled {
+    opacity: 1;
+  }
+
+  .testimonials__quote {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+
+  .testimonials__quote p {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    opacity: 0.7;
+    font-style: italic;
+  }
+
+  .testimonials__author {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-top: auto;
+    padding-top: 8px;
+  }
+
+  .testimonials__name {
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
+
+  .testimonials__product {
+    font-size: 0.72rem;
+    opacity: 0.4;
+    letter-spacing: 0.02em;
+  }
+
+  /* Tablet */
+  @media screen and (max-width: 989px) {
+    .testimonials__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 749px) {
+    .testimonials__header {
+      margin-block-end: 32px;
+    }
+
+    .testimonials__grid {
+      grid-template-columns: 1fr;
+      border-radius: var(--style-border-radius);
+    }
+
+    .testimonials__card {
+      padding: 28px 24px;
+    }
+
+    .testimonials__quote p {
+      font-size: 0.9rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "SIHO Anmeldelser",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Bredde",
+      "options": [
+        { "value": "page-width", "label": "Sidebredde" },
+        { "value": "full-width", "label": "Fuld bredde" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "Indhold"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Label",
+      "default": "Kundeanmeldelser"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Overskrift",
+      "default": "Hvad vores kunder siger"
+    },
+    {
+      "type": "header",
+      "content": "Udseende"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Afstand"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top margin",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bund margin",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Anmeldelse",
+      "settings": [
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Bedømmelse",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Citat",
+          "default": "Smykkerne er endnu smukkere i virkeligheden end på billederne. Utrolig kvalitet og hurtig levering!"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Navn",
+          "default": "Maria K."
+        },
+        {
+          "type": "text",
+          "id": "product",
+          "label": "Produkt (valgfrit)",
+          "default": "Sølv tennisarmbånd"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SIHO Anmeldelser",
+      "blocks": [
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Smykkerne er endnu smukkere i virkeligheden end på billederne. Utrolig kvalitet og hurtig levering!",
+            "name": "Maria K.",
+            "product": "Sølv tennisarmbånd"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Jeg har fået så mange komplimenter for min halskæde. Den perfekte gave til mig selv — elegant og tidløs.",
+            "name": "Louise H.",
+            "product": "Guld kædekæde"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Fantastisk kundeservice og smuk emballage. Man føler virkelig, at man får noget eksklusivt. Kommer helt sikkert igen!",
+            "name": "Sofie M.",
+            "product": "Diamant øreringe"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

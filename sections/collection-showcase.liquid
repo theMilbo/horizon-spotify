@@ -1,0 +1,372 @@
+{%- capture children -%}
+  <div class="collection-showcase">
+    {%- if section.settings.title != blank -%}
+      <div class="collection-showcase__header">
+        <h2 class="collection-showcase__title h3">{{ section.settings.title | escape }}</h2>
+        {%- if section.settings.subtitle != blank -%}
+          <p class="collection-showcase__subtitle">{{ section.settings.subtitle | escape }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="collection-showcase__grid">
+      {%- for block in section.blocks -%}
+        {%- assign col = block.settings.collection -%}
+        <a href="{{ col.url | default: '#' }}" class="collection-showcase__card" {{ block.shopify_attributes }}>
+          <div class="collection-showcase__image-wrap">
+            {%- if col.image != blank -%}
+              {{ col.image | image_url: width: 900 | image_tag:
+                class: 'collection-showcase__image',
+                loading: 'lazy',
+                widths: '400,600,900',
+                sizes: '(max-width: 749px) 90vw, 45vw'
+              }}
+            {%- elsif block.settings.image != blank -%}
+              {{ block.settings.image | image_url: width: 900 | image_tag:
+                class: 'collection-showcase__image',
+                loading: 'lazy',
+                widths: '400,600,900',
+                sizes: '(max-width: 749px) 90vw, 45vw'
+              }}
+            {%- else -%}
+              <div class="collection-showcase__placeholder">
+                {{ 'collection-1' | placeholder_svg_tag: 'collection-showcase__placeholder-svg' }}
+              </div>
+            {%- endif -%}
+            <div class="collection-showcase__overlay"></div>
+          </div>
+          <div class="collection-showcase__content">
+            <span class="collection-showcase__label">{{ block.settings.label | default: 'Kollektion' | escape }}</span>
+            <h3 class="collection-showcase__name">{{ col.title | default: block.settings.title | escape }}</h3>
+            {%- if block.settings.description != blank -%}
+              <p class="collection-showcase__desc">{{ block.settings.description | escape }}</p>
+            {%- endif -%}
+            <span class="collection-showcase__cta">
+              {{ block.settings.cta_text | default: 'Se kollektion' | escape }}
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            </span>
+          </div>
+        </a>
+      {%- endfor -%}
+    </div>
+  </div>
+{%- endcapture -%}
+
+{%- render 'section', section: section, children: children -%}
+
+<style>
+  .collection-showcase__header {
+    text-align: center;
+    margin-block-end: 48px;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+
+  .collection-showcase__title {
+    margin: 0 0 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .collection-showcase__subtitle {
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.7;
+    opacity: 0.6;
+  }
+
+  .collection-showcase__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+  }
+
+  .collection-showcase__card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: inherit;
+    border-radius: calc(var(--style-border-radius) + 8px);
+    overflow: hidden;
+    background: var(--color-background);
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+  }
+
+  .collection-showcase__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08);
+  }
+
+  .collection-showcase__image-wrap {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+  }
+
+  .collection-showcase__image,
+  .collection-showcase__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .collection-showcase__card:hover .collection-showcase__image {
+    transform: scale(1.04);
+  }
+
+  .collection-showcase__placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(var(--color-foreground-rgb), 0.04);
+  }
+
+  .collection-showcase__placeholder-svg {
+    width: 60%;
+    height: auto;
+    opacity: 0.15;
+  }
+
+  .collection-showcase__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.15) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .collection-showcase__content {
+    padding: 28px 28px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .collection-showcase__label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    opacity: 0.45;
+    font-weight: 500;
+  }
+
+  .collection-showcase__name {
+    margin: 0;
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .collection-showcase__desc {
+    margin: 4px 0 0;
+    font-size: 0.88rem;
+    line-height: 1.6;
+    opacity: 0.55;
+  }
+
+  .collection-showcase__cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, gap 0.3s ease;
+  }
+
+  .collection-showcase__card:hover .collection-showcase__cta {
+    opacity: 1;
+    gap: 10px;
+  }
+
+  .collection-showcase__cta svg {
+    transition: transform 0.3s ease;
+  }
+
+  .collection-showcase__card:hover .collection-showcase__cta svg {
+    transform: translateX(3px);
+  }
+
+  /* Tablet */
+  @media screen and (max-width: 989px) {
+    .collection-showcase__grid {
+      gap: 16px;
+    }
+
+    .collection-showcase__content {
+      padding: 20px 20px 24px;
+    }
+
+    .collection-showcase__name {
+      font-size: 1.2rem;
+    }
+  }
+
+  /* Mobile: stack */
+  @media screen and (max-width: 749px) {
+    .collection-showcase__header {
+      margin-block-end: 32px;
+    }
+
+    .collection-showcase__grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+
+    .collection-showcase__image-wrap {
+      aspect-ratio: 3 / 4;
+    }
+
+    .collection-showcase__content {
+      padding: 20px 20px 24px;
+    }
+
+    .collection-showcase__name {
+      font-size: 1.25rem;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "SIHO Kollektioner",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Bredde",
+      "options": [
+        { "value": "page-width", "label": "Sidebredde" },
+        { "value": "full-width", "label": "Fuld bredde" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "Indhold"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Overskrift",
+      "default": "Vores kollektioner"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Undertitel",
+      "default": "Udforsk vores håndudvalgte smykker"
+    },
+    {
+      "type": "header",
+      "content": "Udseende"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Afstand"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top margin",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bund margin",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 60
+    }
+  ],
+  "blocks": [
+    {
+      "type": "collection_card",
+      "name": "Kollektion kort",
+      "settings": [
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Kollektion"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Brugerdefineret billede (valgfrit)"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Kollektion"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Titel (kun hvis ingen kollektion valgt)",
+          "default": "Kollektion navn"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Beskrivelse",
+          "default": "Udforsk vores smukke udvalg"
+        },
+        {
+          "type": "text",
+          "id": "cta_text",
+          "label": "CTA tekst",
+          "default": "Se kollektion"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "SIHO Kollektioner",
+      "blocks": [
+        {
+          "type": "collection_card",
+          "settings": {
+            "label": "Kollektion",
+            "title": "Armbånd",
+            "description": "Elegante armbånd i 925 sterling sølv og 18K guld",
+            "cta_text": "Se armbånd"
+          }
+        },
+        {
+          "type": "collection_card",
+          "settings": {
+            "label": "Kollektion",
+            "title": "Halskæder",
+            "description": "Tidløse halskæder til enhver anledning",
+            "cta_text": "Se halskæder"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

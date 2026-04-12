@@ -12,7 +12,7 @@
         "NEMOTRON_API_KEY": "",
         "NEMOTRON_ENDPOINT": "https://api.ollama.com",
         "NEMOTRON_MODEL": "nemotron-3-super:cloud",
-        "BRAINSYNC_LICENSE_TOKEN": "eyJ0aWVyIjoidHJpYWwiLCJleHBpcmVzQXQiOjE3NzU1NTY4Mjc3MDgsIm1hY2hpbmVJZCI6ImF1dGgwfHVzIiwidiI6MX0.6239da2542ee8041d1031c2de3e9d522628a6ec63f064735317d12008ea21a7c"
+        "BRAINSYNC_LICENSE_TOKEN": "eyJ0aWVyIjoidHJpYWwiLCJleHBpcmVzQXQiOjE3NzU3MjM0MTAyNDksIm1hY2hpbmVJZCI6ImF1dGgwfHVzIiwidiI6MX0.6d7d3bcc062763bdfbf9c124110bf176950c3797db3824b841a17a593ed7abe9"
       }
     }
   }

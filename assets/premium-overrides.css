@@ -1,0 +1,322 @@
+/* ============================================================
+   SIHO CPH — Premium Design System Override
+   Luxury jewelry store refinements on top of Horizon theme
+   ============================================================ */
+
+/* --- Premium animation timing --- */
+:root {
+  --premium-ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --premium-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --premium-ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --premium-duration: 0.45s;
+  --premium-duration-slow: 0.65s;
+
+  /* Premium shadow system */
+  --shadow-xs: 0 1px 2px rgba(44, 37, 32, 0.04);
+  --shadow-sm: 0 2px 8px rgba(44, 37, 32, 0.06);
+  --shadow-md: 0 8px 24px rgba(44, 37, 32, 0.08);
+  --shadow-lg: 0 16px 48px rgba(44, 37, 32, 0.10);
+  --shadow-xl: 0 24px 64px rgba(44, 37, 32, 0.12);
+
+  /* Override hover timing */
+  --hover-transition-duration: 0.4s;
+  --hover-transition-timing: cubic-bezier(0.25, 0.1, 0.25, 1);
+  --surface-transition-duration: 0.45s;
+  --submenu-animation-speed: 420ms;
+  --submenu-animation-easing: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* --- Smooth scroll refinement --- */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* --- Body typography base refinement --- */
+body {
+  letter-spacing: 0.005em;
+  font-feature-settings: 'kern' 1, 'liga' 1, 'calt' 1;
+}
+
+/* --- Premium heading styles --- */
+h1, .h1 {
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  line-height: 1.08;
+}
+
+h2, .h2 {
+  letter-spacing: -0.03em;
+  font-weight: 700;
+  line-height: 1.12;
+}
+
+h3, .h3 {
+  letter-spacing: -0.025em;
+  font-weight: 600;
+  line-height: 1.18;
+}
+
+h4, .h4 {
+  letter-spacing: -0.02em;
+  font-weight: 600;
+}
+
+h5, .h5, h6, .h6 {
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* --- Premium link styling --- */
+a {
+  transition: color var(--premium-duration) var(--premium-ease),
+              opacity var(--premium-duration) var(--premium-ease);
+}
+
+/* --- Premium button refinements --- */
+.button,
+.button-primary,
+.button-secondary,
+[class*="button"] {
+  transition: all var(--premium-duration) var(--premium-ease);
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.button-primary:hover,
+button[type="submit"]:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+/* --- Premium image treatments --- */
+.collection-card__image,
+.featured-blog-posts-card__image,
+.product-card-gallery img {
+  transition: transform var(--premium-duration-slow) var(--premium-ease-out);
+}
+
+/* --- Premium card hover effects --- */
+.collection-card:hover .collection-card__image,
+.featured-blog-posts-card:hover .featured-blog-posts-card__image {
+  transform: scale(1.03);
+}
+
+/* --- Product card premium refinements --- */
+.product-card {
+  transition: transform var(--premium-duration) var(--premium-ease),
+              box-shadow var(--premium-duration) var(--premium-ease);
+}
+
+/* --- Announcement bar premium --- */
+.announcement-bar {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 0.72rem !important;
+  font-weight: 500;
+}
+
+.announcement-bar__slides {
+  max-width: 100%;
+}
+
+/* --- Header premium refinements --- */
+.header__row--top {
+  letter-spacing: 0.02em;
+}
+
+.header-component nav a,
+.header__menu-item {
+  letter-spacing: 0.04em;
+  font-weight: 500;
+  transition: opacity var(--premium-duration) var(--premium-ease);
+}
+
+.header-component nav a:hover,
+.header__menu-item:hover {
+  opacity: 0.6;
+}
+
+/* --- Premium section spacing --- */
+.section-wrapper + .section-wrapper {
+  /* Generous breathing room between sections */
+}
+
+/* --- Premium input fields --- */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="url"],
+input[type="number"],
+textarea,
+select {
+  transition: border-color var(--premium-duration) var(--premium-ease),
+              box-shadow var(--premium-duration) var(--premium-ease),
+              background-color var(--premium-duration) var(--premium-ease);
+  letter-spacing: 0.01em;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  box-shadow: 0 0 0 2px rgba(44, 37, 32, 0.08);
+}
+
+/* --- Premium divider/separator --- */
+.section-wrapper .divider {
+  opacity: 0.08;
+}
+
+/* --- Reveal animation for sections --- */
+@keyframes premiumFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes premiumFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* --- Premium scrollbar --- */
+html {
+  scrollbar-color: rgba(44, 37, 32, 0.15) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(44, 37, 32, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(44, 37, 32, 0.25);
+}
+
+/* --- Footer premium --- */
+footer .footer-content {
+  letter-spacing: 0.01em;
+}
+
+footer h2, footer h3, footer h4 {
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  font-size: 0.78rem !important;
+  font-weight: 600;
+}
+
+footer .footer-content {
+  gap: var(--footer-gap, 40px);
+}
+
+/* --- Selection color --- */
+::selection {
+  background: rgba(44, 37, 32, 0.12);
+  color: inherit;
+}
+
+/* --- Cart drawer premium --- */
+.cart-drawer {
+  box-shadow: var(--shadow-xl);
+}
+
+/* --- Search modal premium --- */
+.search-modal__content,
+.predictive-search {
+  box-shadow: var(--shadow-lg);
+}
+
+/* --- Product page premium spacing --- */
+.product-information {
+  letter-spacing: 0.005em;
+}
+
+.product-information .price {
+  letter-spacing: 0.02em;
+}
+
+/* --- Badge/tag premium --- */
+.badge {
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* --- Variant swatch premium --- */
+.variant-button {
+  transition: all var(--premium-duration) var(--premium-ease);
+}
+
+.variant-button:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+/* --- Mobile refinements --- */
+@media screen and (max-width: 749px) {
+  h1, .h1 {
+    letter-spacing: -0.025em;
+  }
+
+  h2, .h2 {
+    letter-spacing: -0.02em;
+  }
+
+  /* Tighter scrollbar on mobile */
+  ::-webkit-scrollbar {
+    width: 3px;
+  }
+}
+
+/* --- Premium focus states --- */
+:focus-visible {
+  outline: 2px solid rgba(44, 37, 32, 0.3);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* --- Smooth image loading --- */
+img {
+  transition: opacity 0.3s ease;
+}
+
+img[loading="lazy"] {
+  opacity: 0;
+  animation: premiumFadeIn 0.5s var(--premium-ease) forwards;
+  animation-delay: 0.1s;
+}
+
+img[loading="lazy"].loaded,
+img[loading="lazy"][complete] {
+  opacity: 1;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  img[loading="lazy"] {
+    opacity: 1;
+    animation: none;
+  }
+}

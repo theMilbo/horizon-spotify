@@ -1,0 +1,275 @@
+{%- capture children -%}
+  <div class="newsletter-premium">
+    <div class="newsletter-premium__inner">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="newsletter-premium__eyebrow">{{ section.settings.eyebrow | escape }}</span>
+      {%- endif -%}
+      <h2 class="newsletter-premium__title h3">{{ section.settings.title | escape }}</h2>
+      {%- if section.settings.subtitle != blank -%}
+        <p class="newsletter-premium__subtitle">{{ section.settings.subtitle | escape }}</p>
+      {%- endif -%}
+
+      {%- form 'customer', id: 'newsletter-premium' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+        <div class="newsletter-premium__form">
+          <input
+            type="email"
+            name="contact[email]"
+            class="newsletter-premium__input"
+            placeholder="{{ section.settings.placeholder | escape }}"
+            required
+            autocomplete="email"
+            aria-label="{{ section.settings.placeholder | escape }}"
+          >
+          <button type="submit" class="newsletter-premium__button">
+            {{ section.settings.button_text | escape }}
+          </button>
+        </div>
+        {%- if form.posted_successfully? -%}
+          <p class="newsletter-premium__success">Tak for din tilmelding! Du hører snart fra os.</p>
+        {%- endif -%}
+        {%- if form.errors -%}
+          <p class="newsletter-premium__error">{{ form.errors.messages['email'] }}</p>
+        {%- endif -%}
+      {%- endform -%}
+
+      {%- if section.settings.disclaimer != blank -%}
+        <p class="newsletter-premium__disclaimer">{{ section.settings.disclaimer | escape }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+{%- endcapture -%}
+
+{%- render 'section', section: section, children: children -%}
+
+<style>
+  .newsletter-premium {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .newsletter-premium__inner {
+    text-align: center;
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .newsletter-premium__eyebrow {
+    display: block;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    opacity: 0.4;
+    font-weight: 500;
+    margin-block-end: 16px;
+  }
+
+  .newsletter-premium__title {
+    margin: 0 0 12px;
+    letter-spacing: -0.025em;
+  }
+
+  .newsletter-premium__subtitle {
+    margin: 0 0 32px;
+    font-size: 0.95rem;
+    line-height: 1.65;
+    opacity: 0.55;
+    max-width: 440px;
+  }
+
+  .newsletter-premium__form {
+    display: flex;
+    gap: 0;
+    width: 100%;
+    max-width: 460px;
+    border: 1px solid rgba(var(--color-foreground-rgb), 0.15);
+    border-radius: 60px;
+    overflow: hidden;
+    transition: border-color 0.4s cubic-bezier(0.25, 0.1, 0.25, 1),
+                box-shadow 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+  }
+
+  .newsletter-premium__form:focus-within {
+    border-color: rgba(var(--color-foreground-rgb), 0.35);
+    box-shadow: 0 0 0 3px rgba(var(--color-foreground-rgb), 0.05);
+  }
+
+  .newsletter-premium__input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 16px 24px;
+    font-size: 0.88rem;
+    letter-spacing: 0.01em;
+    color: var(--color-foreground);
+    outline: none;
+  }
+
+  .newsletter-premium__input::placeholder {
+    color: var(--color-foreground);
+    opacity: 0.35;
+  }
+
+  .newsletter-premium__button {
+    flex-shrink: 0;
+    border: none;
+    background: var(--color-foreground);
+    color: var(--color-background);
+    padding: 16px 28px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: opacity 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .newsletter-premium__button:hover {
+    opacity: 0.85;
+  }
+
+  .newsletter-premium__success {
+    margin: 16px 0 0;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    color: var(--color-foreground);
+  }
+
+  .newsletter-premium__error {
+    margin: 12px 0 0;
+    font-size: 0.82rem;
+    color: #b44;
+  }
+
+  .newsletter-premium__disclaimer {
+    margin: 20px 0 0;
+    font-size: 0.72rem;
+    opacity: 0.3;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+  }
+
+  /* Mobile */
+  @media screen and (max-width: 749px) {
+    .newsletter-premium__form {
+      flex-direction: column;
+      border-radius: 16px;
+    }
+
+    .newsletter-premium__input {
+      padding: 14px 20px;
+      text-align: center;
+    }
+
+    .newsletter-premium__button {
+      padding: 14px 20px;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "SIHO Nyhedsbrev",
+  "class": "section-wrapper",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "Bredde",
+      "options": [
+        { "value": "page-width", "label": "Sidebredde" },
+        { "value": "full-width", "label": "Fuld bredde" }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "header",
+      "content": "Indhold"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Label",
+      "default": "Nyhedsbrev"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Overskrift",
+      "default": "Bliv en del af SIHO CPH"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Undertitel",
+      "default": "Tilmeld dig og få eksklusive tilbud, tidlig adgang til nye kollektioner og styling-inspiration."
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder tekst",
+      "default": "Din e-mailadresse"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Knap tekst",
+      "default": "Tilmeld"
+    },
+    {
+      "type": "text",
+      "id": "disclaimer",
+      "label": "Disclaimer tekst",
+      "default": "Vi sender aldrig spam. Afmeld når som helst."
+    },
+    {
+      "type": "header",
+      "content": "Udseende"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Farveskema",
+      "default": "scheme-1"
+    },
+    {
+      "type": "header",
+      "content": "Afstand"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top margin",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 72
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bund margin",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 72
+    }
+  ],
+  "presets": [
+    {
+      "name": "SIHO Nyhedsbrev"
+    }
+  ]
+}
+{% endschema %}
