@@ -620,7 +620,7 @@
       ],
       "name": "SIHO FAQ - Smykker",
       "settings": {
-        "section_width": "page-width",
+        "section_width": "full-width",
         "title": "Ofte stillede spørgsmål",
         "subtitle": "Alt hvad du har brug for at vide om vores smykker",
         "color_scheme": "",
