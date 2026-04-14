@@ -320,3 +320,642 @@ img[loading="lazy"][complete] {
     animation: none;
   }
 }
+
+/* ============================================================
+   JEWELRY-SITE TYPOGRAPHY SIZING
+   Matches proportions of Mejuri / Monica Vinader / Missoma
+   ============================================================ */
+
+/* Fluid hero headings — never oversized */
+.hero h1,
+.hero .h1,
+.slideshow h1,
+.slideshow .h1,
+[class*="hero"] h1 {
+  font-size: clamp(2rem, 4.2vw, 3rem) !important;
+  line-height: 1.1;
+}
+
+/* Section titles across the theme */
+section h2,
+section .h2,
+.section h2,
+.section .h2 {
+  font-size: clamp(1.4rem, 2.4vw, 2rem) !important;
+  line-height: 1.15;
+}
+
+/* Sub-section / card group titles */
+section h3,
+section .h3 {
+  font-size: clamp(1.1rem, 1.6vw, 1.4rem) !important;
+  line-height: 1.2;
+}
+
+/* Eyebrow / small-caps labels */
+section h4,
+section .h4,
+.eyebrow,
+[class*="eyebrow"] {
+  font-size: 0.72rem !important;
+  letter-spacing: 0.14em !important;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Product card titles — small, clean, refined */
+.product-card .product-title,
+.product-card__title,
+.product-card h3,
+.product-card .h3,
+.product-grid .product-title,
+.card__content h3,
+.card__content .h3,
+.card-gallery__info .product-title {
+  font-size: 0.88rem !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.005em !important;
+  line-height: 1.35 !important;
+  font-family: var(--font-body--family) !important;
+  text-transform: none !important;
+}
+
+/* Product card price */
+.product-card .price,
+.product-card__price,
+.card__content .price,
+.product-grid .price {
+  font-size: 0.85rem !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.01em !important;
+}
+
+/* Product page main title */
+.product-information h1,
+.product-information .h1,
+.product-title h1 {
+  font-size: clamp(1.5rem, 2.4vw, 2rem) !important;
+  line-height: 1.2 !important;
+}
+
+/* Product page price */
+.product-information .price {
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+}
+
+/* Collection title */
+.main-collection h1,
+.collection-banner h1,
+.collection-hero h1 {
+  font-size: clamp(1.75rem, 3vw, 2.5rem) !important;
+}
+
+/* Body paragraphs — readable without shouting */
+p, .rte p {
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+/* Buttons — small, confident, uppercase */
+.button,
+.button-primary,
+.button-secondary,
+button[type="submit"],
+[class*="button"] {
+  font-size: 0.78rem !important;
+  letter-spacing: 0.12em !important;
+  text-transform: uppercase;
+}
+
+/* Navigation menu — discreet */
+.header-component nav a,
+.header__menu-item,
+.header__inline-menu a {
+  font-size: 0.78rem !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase;
+}
+
+/* Trust/feature card titles */
+.trust-signal__title,
+.jewelry-care__title,
+.feature-card__title {
+  font-size: 0.82rem !important;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* Testimonial quotes — smaller, more elegant */
+.testimonial blockquote,
+.testimonial__quote {
+  font-size: 0.95rem !important;
+  line-height: 1.6 !important;
+}
+
+/* Footer text */
+footer a,
+footer li,
+footer p {
+  font-size: 0.82rem !important;
+  letter-spacing: 0.01em;
+}
+
+/* Mobile scaling — further reduction */
+@media screen and (max-width: 749px) {
+  .hero h1,
+  .slideshow h1,
+  [class*="hero"] h1 {
+    font-size: clamp(1.6rem, 7vw, 2.2rem) !important;
+  }
+
+  section h2,
+  .section h2 {
+    font-size: clamp(1.2rem, 5.5vw, 1.6rem) !important;
+  }
+
+  .product-card .product-title,
+  .product-card__title,
+  .card__content h3 {
+    font-size: 0.82rem !important;
+  }
+
+  .button, [class*="button"] {
+    font-size: 0.72rem !important;
+  }
+
+  p, .rte p {
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================================================
+   LUXURY REFINEMENTS — Quiet luxury design language
+   ============================================================ */
+
+:root {
+  --siho-gold: #b89968;
+  --siho-gold-soft: rgba(184, 153, 104, 0.15);
+  --siho-ink: #1a1714;
+  --siho-ink-soft: rgba(26, 23, 20, 0.6);
+  --siho-hairline: rgba(26, 23, 20, 0.08);
+  --siho-cream: #faf7f3;
+  --luxury-ease: cubic-bezier(0.19, 1, 0.22, 1);
+  --luxury-duration: 0.6s;
+}
+
+/* Generous section breathing room */
+section,
+.section-wrapper,
+.shopify-section {
+  --section-padding-block: clamp(4rem, 7vw, 8rem);
+}
+
+.shopify-section > section,
+.shopify-section > .section {
+  padding-top: var(--section-padding-block);
+  padding-bottom: var(--section-padding-block);
+}
+
+/* Hairline dividers between sections */
+.shopify-section + .shopify-section:not(:first-child)::before {
+  content: "";
+  display: block;
+  width: min(120px, 12vw);
+  height: 1px;
+  background: var(--siho-hairline);
+  margin: 0 auto;
+}
+
+/* Refined product cards — minimal and image-forward */
+.product-card,
+.card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  transition: transform var(--luxury-duration) var(--luxury-ease);
+}
+
+.product-card:hover {
+  transform: translateY(-2px);
+}
+
+.product-card .product-card-gallery,
+.product-card__image-wrapper,
+.card__media {
+  overflow: hidden;
+  border-radius: 2px !important;
+  background: var(--siho-cream);
+  aspect-ratio: 4 / 5;
+}
+
+.product-card img,
+.card__media img {
+  transition: transform 1.2s var(--luxury-ease),
+              opacity 0.8s var(--luxury-ease);
+}
+
+.product-card:hover img {
+  transform: scale(1.04);
+}
+
+/* Product card text — centered, breathing, serif-adjacent */
+.product-card .card__content,
+.product-card__info,
+.card__content {
+  padding: 1rem 0.25rem 0 !important;
+  text-align: center;
+}
+
+.product-card .product-title,
+.card__content h3 {
+  margin-bottom: 0.35rem !important;
+}
+
+.product-card .price,
+.card__content .price {
+  color: var(--siho-ink-soft);
+}
+
+/* Refined primary buttons — ghost-like confidence */
+.button-primary,
+button.button-primary,
+.button[class*="primary"] {
+  padding: 1rem 2.25rem !important;
+  border-radius: 0 !important;
+  font-weight: 500 !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s var(--luxury-ease);
+}
+
+.button-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateX(-100%);
+  transition: transform 0.6s var(--luxury-ease);
+}
+
+.button-primary:hover::before {
+  transform: translateX(0);
+}
+
+.button-primary:hover {
+  transform: none !important;
+  box-shadow: 0 10px 30px rgba(26, 23, 20, 0.15);
+}
+
+/* Secondary / ghost buttons with underline reveal */
+.button-secondary,
+.link,
+a.button-secondary {
+  border-radius: 0 !important;
+  position: relative;
+}
+
+/* Elegant text links with underline animation */
+.rte a,
+.product-description a,
+a.text-link {
+  background-image: linear-gradient(var(--siho-ink), var(--siho-ink));
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  text-decoration: none !important;
+  transition: background-size 0.5s var(--luxury-ease);
+  padding-bottom: 1px;
+}
+
+.rte a:hover,
+.product-description a:hover,
+a.text-link:hover {
+  background-size: 100% 1px;
+}
+
+/* Gold accent — subtle luxury signal */
+.badge--sale,
+.price--on-sale .price-item--sale,
+.eyebrow-gold,
+.product-price--sale {
+  color: var(--siho-gold) !important;
+}
+
+/* Sale badges — refined pill */
+.badge {
+  padding: 0.4rem 0.75rem !important;
+  font-size: 0.65rem !important;
+  letter-spacing: 0.16em !important;
+  border-radius: 0 !important;
+  background: var(--siho-ink) !important;
+  color: #faf7f3 !important;
+}
+
+/* Refined inputs — underline style */
+.newsletter input[type="email"],
+input.newsletter__input {
+  border-radius: 0 !important;
+  border: none !important;
+  border-bottom: 1px solid var(--siho-hairline) !important;
+  background: transparent !important;
+  padding: 0.75rem 0 !important;
+  font-size: 0.9rem !important;
+  letter-spacing: 0.04em;
+  transition: border-color 0.4s var(--luxury-ease);
+}
+
+.newsletter input[type="email"]:focus {
+  border-bottom-color: var(--siho-ink) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* Hero refinements — luxury cinematic feel */
+.hero,
+[class*="hero"] section,
+.slideshow {
+  position: relative;
+}
+
+.hero h1,
+.slideshow h1 {
+  font-weight: 400 !important;
+  letter-spacing: -0.02em !important;
+}
+
+.hero .subtitle,
+.hero__subtitle,
+[class*="hero"] [class*="subtitle"] {
+  font-size: 0.78rem !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase;
+  font-weight: 500;
+  opacity: 0.8;
+  margin-bottom: 1.25rem !important;
+}
+
+/* Image luxury treatment — subtle warm undertone */
+.collection-card img,
+.product-card img,
+.brand-story img,
+.hero img {
+  filter: contrast(1.02) saturate(0.98);
+}
+
+/* Refined collection cards */
+.collection-card {
+  border-radius: 2px !important;
+  overflow: hidden;
+}
+
+.collection-card__content,
+.collection-card__info {
+  padding: 1.5rem !important;
+}
+
+.collection-card__title,
+.collection-card h3 {
+  letter-spacing: 0.02em;
+}
+
+/* Price — refined weight and spacing */
+.price,
+.price-item {
+  font-weight: 400 !important;
+  letter-spacing: 0.03em !important;
+}
+
+/* Quantity selector refinement */
+.quantity-selector,
+.product-form__quantity {
+  border-radius: 0 !important;
+  border: 1px solid var(--siho-hairline) !important;
+}
+
+/* Footer refinements */
+footer {
+  padding-top: 5rem !important;
+  padding-bottom: 3rem !important;
+}
+
+footer h2, footer h3, footer h4 {
+  color: var(--siho-ink) !important;
+  margin-bottom: 1.25rem !important;
+}
+
+footer a {
+  opacity: 0.72;
+  transition: opacity 0.3s var(--luxury-ease);
+}
+
+footer a:hover {
+  opacity: 1;
+}
+
+/* Subtle reveal on scroll — luxury polish */
+@keyframes luxuryReveal {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+section > * {
+  animation: luxuryReveal 0.9s var(--luxury-ease) both;
+}
+
+/* Cart drawer — luxe refinement */
+.cart-drawer {
+  backdrop-filter: blur(12px);
+}
+
+.cart-drawer__header h2 {
+  font-size: 0.9rem !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase;
+}
+
+/* Announcement bar — thinner, more refined */
+.announcement-bar {
+  padding: 0.6rem 0 !important;
+  font-size: 0.68rem !important;
+  letter-spacing: 0.22em !important;
+}
+
+/* Remove loud shadows — luxury is quiet */
+.card-shadow,
+[class*="shadow"]:not(.cart-drawer):not(.header) {
+  box-shadow: none !important;
+}
+
+/* Selection — gold luxury highlight */
+::selection {
+  background: var(--siho-gold-soft);
+  color: var(--siho-ink);
+}
+
+/* Respect reduced motion for animations */
+@media (prefers-reduced-motion: reduce) {
+  section > * {
+    animation: none !important;
+  }
+}
+
+/* Mobile luxury adjustments */
+@media screen and (max-width: 749px) {
+  section,
+  .shopify-section > section {
+    --section-padding-block: clamp(3rem, 10vw, 5rem);
+  }
+
+  .product-card .card__content {
+    padding: 0.75rem 0.25rem 0 !important;
+  }
+
+  footer {
+    padding-top: 3rem !important;
+  }
+}
+
+/* ============================================================
+   IMAGE / COLLECTION SIZING — More columns, smaller cards
+   Jewelry sites show more SKUs per row, not fewer
+   ============================================================ */
+
+/* Product grid: 4 columns desktop, 3 tablet, 2 mobile */
+.product-grid,
+.collection-grid,
+.products-grid,
+[class*="product-grid"] {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: clamp(1rem, 2vw, 2.5rem) !important;
+}
+
+@media screen and (max-width: 989px) {
+  .product-grid,
+  .collection-grid,
+  [class*="product-grid"] {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media screen and (max-width: 749px) {
+  .product-grid,
+  .collection-grid,
+  [class*="product-grid"] {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem !important;
+  }
+}
+
+/* Cap product card image aspect ratio — keep images compact */
+.product-card .product-card-gallery,
+.product-card__image-wrapper,
+.card__media,
+.card-media {
+  aspect-ratio: 4 / 5 !important;
+  max-height: 480px;
+}
+
+/* Collection showcase — smaller, tighter cards */
+.collection-showcase__grid,
+.collection-list__grid,
+[class*="collection-showcase"] .grid,
+[class*="collection-list"] .grid {
+  gap: clamp(1rem, 2vw, 2rem) !important;
+}
+
+.collection-card,
+.collection-card__inner {
+  max-width: 100%;
+}
+
+.collection-card__image,
+.collection-card .card__media,
+.collection-list-card__image {
+  aspect-ratio: 4 / 5 !important;
+  max-height: 560px;
+}
+
+/* Featured / hero collection cards — don't let them dominate */
+.featured-collection-card,
+.collection-showcase-card {
+  max-width: 100%;
+}
+
+/* Contain hero / banner images — prevent giant full-bleed */
+.hero__media img,
+.hero-banner__media img,
+.slideshow__slide img {
+  object-fit: cover;
+  max-height: 85vh;
+}
+
+@media screen and (max-width: 749px) {
+  .hero__media img,
+  .slideshow__slide img {
+    max-height: 70vh;
+  }
+}
+
+/* Collection page banner — tighter */
+.collection-banner,
+.collection-hero {
+  min-height: auto !important;
+  padding-top: clamp(2rem, 4vw, 4rem) !important;
+  padding-bottom: clamp(1.5rem, 3vw, 3rem) !important;
+}
+
+.collection-banner img,
+.collection-hero img {
+  max-height: 400px;
+  object-fit: cover;
+}
+
+/* Product page main image — cap height so it's not enormous */
+.product-media,
+.product-gallery,
+.product__media,
+.product-images {
+  max-width: 600px;
+}
+
+.product-media img,
+.product__media img {
+  max-height: 720px;
+  object-fit: contain;
+}
+
+/* Featured product section */
+.featured-product__media,
+.featured-products .product-card {
+  max-width: 100%;
+}
+
+/* Brand story image — more controlled */
+.brand-story__image,
+.brand-story img {
+  max-height: 560px !important;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+/* Mobile — ensure cards don't become too tall */
+@media screen and (max-width: 749px) {
+  .product-card .product-card-gallery,
+  .card__media,
+  .collection-card__image {
+    max-height: 320px;
+  }
+
+  .brand-story__image {
+    max-height: 400px !important;
+  }
+}

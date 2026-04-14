@@ -1,7 +1,7 @@
 
 
 # Project Memory — horizon-spotify
-> 669 notes | Score threshold: >40
+> 846 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -20,7 +20,6 @@
 
 ## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Project Standards
 
-- what-changed in brainsync_auto.md — confirmed 3x
 - Replaced auth Score — confirmed 3x
 - what-changed in brainsync_auto.md — confirmed 3x
 - what-changed in brainsync_auto.md — confirmed 3x
@@ -28,12 +27,13 @@
 - what-changed in brainsync_auto.md — confirmed 3x
 - what-changed in brainsync_auto.md — confirmed 3x
 - Replaced auth Score — confirmed 3x
+- what-changed in brainsync_auto.md — confirmed 3x
 
 ## Learned Patterns
 
 - Always: what-changed in brainsync_auto.md — confirmed 3x (seen 4x)
-- Always: Replaced auth Score — introduces API versioning for backward compatibility — confirmed 3x (seen 2x)
 - Always: what-changed in brainsync_auto.md — confirmed 3x (seen 5x)
+- Always: what-changed in brainsync_auto.md — confirmed 3x (seen 6x)
 - Agent generates new migration for every change (squash related changes)
 - Agent installs packages without checking if already installed
 
