@@ -404,11 +404,17 @@ section .h4,
   font-weight: 500 !important;
 }
 
-/* Collection title */
+/* Collection title — contained even if name is long */
 .main-collection h1,
 .collection-banner h1,
-.collection-hero h1 {
-  font-size: clamp(1.75rem, 3vw, 2.5rem) !important;
+.collection-hero h1,
+.main-collection .h1,
+main h1 {
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem) !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.01em !important;
+  line-height: 1.2 !important;
+  max-width: 60ch;
 }
 
 /* Body paragraphs — readable without shouting */
@@ -767,9 +773,7 @@ footer a:hover {
   }
 }
 
-.shopify-section:not([id*="header"]):not([id*="footer"]):not([id*="announcement"]) section > * {
-  animation: luxuryReveal 0.9s var(--luxury-ease) both;
-}
+/* Scroll reveal removed — was hiding product grids */
 
 /* Cart drawer — luxe refinement */
 .cart-drawer {
@@ -829,31 +833,12 @@ footer a:hover {
    Jewelry sites show more SKUs per row, not fewer
    ============================================================ */
 
-/* Product grid: 4 columns desktop, 3 tablet, 2 mobile */
+/* Product grid gap tightening — let theme's own layout handle structure */
 .product-grid,
 .collection-grid,
 .products-grid,
 [class*="product-grid"] {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-  gap: clamp(1rem, 2vw, 2.5rem) !important;
-}
-
-@media screen and (max-width: 989px) {
-  .product-grid,
-  .collection-grid,
-  [class*="product-grid"] {
-    grid-template-columns: repeat(3, 1fr) !important;
-  }
-}
-
-@media screen and (max-width: 749px) {
-  .product-grid,
-  .collection-grid,
-  [class*="product-grid"] {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 0.75rem !important;
-  }
+  gap: clamp(1rem, 2vw, 2.5rem);
 }
 
 /* Cap product card image aspect ratio — keep images compact */
