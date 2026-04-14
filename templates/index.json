@@ -174,6 +174,7 @@
         "card_armbaand": {
           "type": "collection_card",
           "settings": {
+            "collection": "armband",
             "label": "Kollektion",
             "title": "Armbånd",
             "description": "Elegante armbånd i 925 sterling sølv og 18K guld",
@@ -183,6 +184,8 @@
         "card_halskaeder": {
           "type": "collection_card",
           "settings": {
+            "collection": "halskaeder",
+            "image": "shopify://shop_images/IMG_3359_3d835d02-19fa-4698-afd1-aba92a6b3ba8.jpg",
             "label": "Kollektion",
             "title": "Halskæder",
             "description": "Tidløse halskæder til enhver anledning",
@@ -190,7 +193,10 @@
           }
         }
       },
-      "block_order": ["card_armbaand", "card_halskaeder"],
+      "block_order": [
+        "card_armbaand",
+        "card_halskaeder"
+      ],
       "settings": {
         "section_width": "page-width",
         "title": "Vores kollektioner",
@@ -400,6 +406,7 @@
           ]
         }
       },
+      "disabled": true,
       "name": "Udvalgte favoritter",
       "settings": {
         "collection": "",
@@ -430,10 +437,56 @@
         "body": "<p>SIHO CPH er skabt af en passion for tidløst skandinavisk design. Hvert smykke er håndudvalgt med fokus på kvalitet, holdbarhed og den perfekte balance mellem elegance og hverdagsbrug.</p><p>Vi tror på, at smykker skal være mere end pynt — de skal fortælle din historie.</p>",
         "cta_text": "Læs mere om os",
         "cta_link": "",
+        "image": "shopify://shop_images/IMG_3352.jpg",
         "badge_text": "Dansk design",
         "color_scheme": "scheme-1",
         "padding-block-start": 72,
         "padding-block-end": 72
+      }
+    },
+    "testimonials_home": {
+      "type": "testimonials",
+      "blocks": {
+        "review_1": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Smykkerne er endnu smukkere i virkeligheden end på billederne. Utrolig kvalitet og hurtig levering!",
+            "name": "Maria K.",
+            "product": "Sølv Armbånd"
+          }
+        },
+        "review_2": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Jeg har fået så mange komplimenter for min halskæde. Den perfekte gave til mig selv — elegant og tidløs.",
+            "name": "Louise H.",
+            "product": "Evil Eye"
+          }
+        },
+        "review_3": {
+          "type": "testimonial",
+          "settings": {
+            "rating": 5,
+            "quote": "Fantastisk kundeservice og smuk emballage. Man føler virkelig, at man får noget eksklusivt. Kommer helt sikkert igen!",
+            "name": "Sofie M.",
+            "product": "Armbånd"
+          }
+        }
+      },
+      "block_order": [
+        "review_1",
+        "review_2",
+        "review_3"
+      ],
+      "settings": {
+        "section_width": "page-width",
+        "eyebrow": "Kundeanmeldelser",
+        "title": "Hvad vores kunder siger",
+        "color_scheme": "scheme-1",
+        "padding-block-start": 60,
+        "padding-block-end": 60
       }
     },
     "jewelry_care_home": {
@@ -486,6 +539,21 @@
         "subtitle": "Følg disse enkle trin for at bevare glansen i dine SIHO CPH smykker i mange år.",
         "padding-block-start": 60,
         "padding-block-end": 60
+      }
+    },
+    "newsletter_home": {
+      "type": "newsletter-premium",
+      "settings": {
+        "section_width": "page-width",
+        "eyebrow": "Nyhedsbrev",
+        "title": "Bliv en del af SIHO CPH",
+        "subtitle": "Tilmeld dig og få eksklusive tilbud, tidlig adgang til nye kollektioner og styling-inspiration.",
+        "placeholder": "Din e-mailadresse",
+        "button_text": "Tilmeld",
+        "disclaimer": "Vi sender aldrig spam. Afmeld når som helst.",
+        "color_scheme": "scheme-3",
+        "padding-block-start": 72,
+        "padding-block-end": 72
       }
     },
     "faq_home": {
@@ -552,68 +620,12 @@
       ],
       "name": "SIHO FAQ - Smykker",
       "settings": {
-        "section_width": "page-width",
+        "section_width": "full-width",
         "title": "Ofte stillede spørgsmål",
         "subtitle": "Alt hvad du har brug for at vide om vores smykker",
         "color_scheme": "",
         "padding-block-start": 60,
         "padding-block-end": 60
-      }
-    },
-    "testimonials_home": {
-      "type": "testimonials",
-      "blocks": {
-        "review_1": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "Smykkerne er endnu smukkere i virkeligheden end på billederne. Utrolig kvalitet og hurtig levering!",
-            "name": "Maria K.",
-            "product": "Sølv tennisarmbånd"
-          }
-        },
-        "review_2": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "Jeg har fået så mange komplimenter for min halskæde. Den perfekte gave til mig selv — elegant og tidløs.",
-            "name": "Louise H.",
-            "product": "Guld kædekæde"
-          }
-        },
-        "review_3": {
-          "type": "testimonial",
-          "settings": {
-            "rating": 5,
-            "quote": "Fantastisk kundeservice og smuk emballage. Man føler virkelig, at man får noget eksklusivt. Kommer helt sikkert igen!",
-            "name": "Sofie M.",
-            "product": "Diamant øreringe"
-          }
-        }
-      },
-      "block_order": ["review_1", "review_2", "review_3"],
-      "settings": {
-        "section_width": "page-width",
-        "eyebrow": "Kundeanmeldelser",
-        "title": "Hvad vores kunder siger",
-        "color_scheme": "scheme-1",
-        "padding-block-start": 60,
-        "padding-block-end": 60
-      }
-    },
-    "newsletter_home": {
-      "type": "newsletter-premium",
-      "settings": {
-        "section_width": "page-width",
-        "eyebrow": "Nyhedsbrev",
-        "title": "Bliv en del af SIHO CPH",
-        "subtitle": "Tilmeld dig og få eksklusive tilbud, tidlig adgang til nye kollektioner og styling-inspiration.",
-        "placeholder": "Din e-mailadresse",
-        "button_text": "Tilmeld",
-        "disclaimer": "Vi sender aldrig spam. Afmeld når som helst.",
-        "color_scheme": "scheme-3",
-        "padding-block-start": 72,
-        "padding-block-end": 72
       }
     }
   },
