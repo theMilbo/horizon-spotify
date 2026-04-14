@@ -945,3 +945,164 @@ footer a:hover {
     max-height: 400px !important;
   }
 }
+
+/* ============================================================
+   MOBILE RESPONSIVE — Premium jewelry-site pattern
+   ============================================================ */
+
+/* Remove any stray list bullets on product/collection grids */
+ul.product-grid,
+ul.collection-grid,
+ul[class*="product"],
+ul[class*="grid"],
+.product-grid,
+.collection-grid,
+.resource-list {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+}
+
+ul.product-grid li::marker,
+.product-grid li::marker,
+.resource-list li::marker,
+[class*="grid"] li::marker {
+  content: "" !important;
+  display: none;
+}
+
+li.product-card,
+li[class*="product-card"],
+.product-grid > li,
+.collection-grid > li,
+.resource-list > li {
+  list-style: none !important;
+  list-style-type: none !important;
+}
+
+/* Mobile collection/product grid — 2 columns with real breathing room */
+@media screen and (max-width: 749px) {
+  .main-collection,
+  .collection-content,
+  main {
+    padding-inline: 0 !important;
+  }
+
+  /* Force 2-column product grid on mobile — common jewelry-site pattern */
+  .product-grid,
+  .collection-grid,
+  .resource-list--products,
+  ul.product-grid {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.75rem 0.5rem !important;
+    padding-inline: 0.5rem !important;
+  }
+
+  /* Mobile product card — full width of its cell */
+  .product-card,
+  .product-grid > li,
+  .collection-grid > li,
+  li.product-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  /* Image fills card cleanly */
+  .product-card .product-card-gallery,
+  .product-card__image-wrapper,
+  .product-card .card__media,
+  .card__media {
+    width: 100% !important;
+    max-height: none !important;
+    aspect-ratio: 4 / 5 !important;
+  }
+
+  .product-card img,
+  .card__media img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+
+  /* Product text — centered, compact, legible */
+  .product-card .card__content,
+  .product-card__info,
+  .card__content {
+    padding: 0.6rem 0.25rem 0 !important;
+    text-align: center;
+  }
+
+  .product-card .product-title,
+  .product-card__title,
+  .card__content h3 {
+    font-size: 0.78rem !important;
+    line-height: 1.3 !important;
+    margin: 0 0 0.25rem !important;
+    /* Clamp long titles to 2 lines */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .product-card .price,
+  .card__content .price {
+    font-size: 0.78rem !important;
+    display: block;
+  }
+
+  /* Collection page banner/title — tighter on mobile */
+  .collection-banner,
+  .collection-hero,
+  .main-collection__header {
+    padding: 1.5rem 1rem 0.75rem !important;
+    text-align: left;
+  }
+
+  .main-collection h1,
+  .collection-banner h1,
+  main h1 {
+    font-size: 1.15rem !important;
+    line-height: 1.3 !important;
+    max-width: 100%;
+    word-break: normal;
+    overflow-wrap: anywhere;
+  }
+
+  /* Filter/sort bar on mobile */
+  .facets,
+  .collection-toolbar,
+  .main-collection__filters {
+    padding: 0.5rem 1rem !important;
+    font-size: 0.78rem !important;
+  }
+
+  /* Hide layout-switcher buttons on mobile (they're cramped) */
+  .collection-grid-view-switcher,
+  .layout-switch,
+  [class*="view-switcher"] {
+    display: none !important;
+  }
+
+  /* Product count / sort */
+  .product-count,
+  .facets__summary {
+    font-size: 0.72rem !important;
+    letter-spacing: 0.08em;
+  }
+}
+
+/* Extra-narrow phones (<380px) — single column option fallback only */
+@media screen and (max-width: 360px) {
+  .product-grid,
+  .collection-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 0.5rem !important;
+  }
+
+  .product-card .product-title {
+    font-size: 0.72rem !important;
+  }
+}
