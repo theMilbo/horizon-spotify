@@ -732,8 +732,13 @@ input.newsletter__input {
 
 /* Footer refinements */
 footer {
-  padding-top: 5rem !important;
-  padding-bottom: 3rem !important;
+  padding: 0 !important;
+}
+
+footer .footer,
+footer > .section,
+footer > section {
+  padding: 0 !important;
 }
 
 footer h2, footer h3, footer h4 {
@@ -815,7 +820,7 @@ footer a:hover {
   }
 
   footer {
-    padding-top: 3rem !important;
+    padding: 0 !important;
   }
 }
 
