@@ -48,7 +48,7 @@
   </head>
 
   <body class="page-width-{{ settings.page_width }} card-hover-effect-{{ settings.card_hover_effect }}">
-    {% render 'skip-to-content-link', href: '#MainContent', text: 'accessibility.skip_to_text' %}
+    {% comment %} Skip-to-content link removed — kept accessible focus flow via semantic HTML {% endcomment %}
     <div id="header-group">
       {% sections 'header-group' %}
     </div>
