@@ -54,7 +54,7 @@
             "case": "none",
             "wrap": "pretty",
             "color": "var(--color-foreground-heading)",
-            "background": false,
+            "background": true,
             "background_color": "#00000026",
             "corner_radius": 0,
             "padding-block-start": 0,
