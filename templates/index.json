@@ -480,6 +480,7 @@
         "review_2",
         "review_3"
       ],
+      "disabled": true,
       "settings": {
         "section_width": "page-width",
         "eyebrow": "Kundeanmeldelser",
