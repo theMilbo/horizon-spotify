@@ -54,7 +54,7 @@
             "case": "none",
             "wrap": "pretty",
             "color": "var(--color-foreground-heading)",
-            "background": false,
+            "background": true,
             "background_color": "#00000026",
             "corner_radius": 0,
             "padding-block-start": 0,
@@ -480,6 +480,7 @@
         "review_2",
         "review_3"
       ],
+      "disabled": true,
       "settings": {
         "section_width": "page-width",
         "eyebrow": "Kundeanmeldelser",
@@ -620,7 +621,7 @@
       ],
       "name": "SIHO FAQ - Smykker",
       "settings": {
-        "section_width": "full-width",
+        "section_width": "page-width",
         "title": "Ofte stillede spørgsmål",
         "subtitle": "Alt hvad du har brug for at vide om vores smykker",
         "color_scheme": "",
