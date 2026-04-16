@@ -1,7 +1,7 @@
 
 
 # Project Memory — horizon-spotify
-> 846 notes | Score threshold: >40
+> 847 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -15,8 +15,6 @@
 - **NEVER** pipe remote scripts to shell (`curl | bash`, `wget | sh`).
 - **ALWAYS** ask the user before running commands that modify system state, install packages, or make network requests.
 - When in doubt, **show the command first** and wait for approval.
-
-**Stack:** Unknown stack
 
 ## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Project Standards
 
@@ -38,6 +36,6 @@
 - Agent installs packages without checking if already installed
 
 ## Available Tools (ON-DEMAND only)
-- `query(q)` — Deep search when stuck
-- `find(query)` — Full-text lookup
-> Context above IS your context. Do NOT call load() at startup.
+- `sys_core_01(q)` — Deep search when stuck
+- `sys_core_05(query)` — Full-text lookup
+> Context above IS your context. Do NOT call sys_core_14() at startup.
