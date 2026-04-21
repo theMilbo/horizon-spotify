@@ -1,7 +1,7 @@
 
 
 # Project Memory — horizon-spotify
-> 876 notes | Score threshold: >40
+> 879 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -17,10 +17,6 @@
 - When in doubt, **show the command first** and wait for approval.
 
 **Stack:** Unknown stack
-
-## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Active: `snippets`
-
-- **🟢 Edited snippets/theme-styles-variables.liquid (6 changes, 105min)**
 
 ## Project Standards
 

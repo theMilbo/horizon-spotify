@@ -1026,15 +1026,21 @@ product-price,
 @media screen and (max-width: 749px) {
 
   /* Product grid — proper 2-col */
-  .product-grid-container .main-collection-grid,
+  .product-grid-container,
+  .main-collection-grid {
+    display: block !important;
+    width: 100% !important;
+  }
+
   .product-grid-container .product-grid,
   .main-collection .product-grid,
   .featured-products .product-grid,
   .collection .product-grid {
     display: grid !important;
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 12px !important;
-    padding: 0 16px !important;
+    gap: 24px 16px !important;
+    padding: 16px 20px !important;
+    width: 100% !important;
   }
 
   /* Card sizing */
@@ -1056,12 +1062,16 @@ product-price,
   }
 
   product-title {
-    font-size: 0.76rem !important;
-    line-height: 1.3 !important;
+    font-size: 0.82rem !important;
+    font-weight: 450 !important;
+    line-height: 1.4 !important;
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    margin-bottom: 4px !important;
+    text-align: center;
+    color: var(--siho-ink) !important;
   }
 
   product-price {
