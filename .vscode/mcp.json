@@ -3,16 +3,13 @@
     "brainsync": {
       "command": "node",
       "args": [
-        "/Users/tommygrundstad/.antigravity/extensions/dawoodahmad.brainsync-3.0.3-universal/dist/mcp-server.js",
+        "/Users/tommygrundstad/.antigravity/extensions/dawoodahmad.brainsync-3.0.11-universal/dist/mcp-server.js",
         "--db",
-        "/Users/tommygrundstad/.brainsync/horizon-spotify-427f9fea/memory.db"
+        "/Users/tommygrundstad/.brainsync/horizon-spotify-427f9fea/state.dat"
       ],
       "type": "stdio",
       "env": {
-        "NEMOTRON_API_KEY": "",
-        "NEMOTRON_ENDPOINT": "https://api.ollama.com",
-        "NEMOTRON_MODEL": "nemotron-3-super:cloud",
-        "BRAINSYNC_LICENSE_TOKEN": "eyJ0aWVyIjoidHJpYWwiLCJleHBpcmVzQXQiOjE3NzU3MjM0MTAyNDksIm1hY2hpbmVJZCI6ImF1dGgwfHVzIiwidiI6MX0.6d7d3bcc062763bdfbf9c124110bf176950c3797db3824b841a17a593ed7abe9"
+        "BRAINSYNC_ENV_FILE": "/Users/tommygrundstad/.brainsync/horizon-spotify-427f9fea/mcp-secret-env.json"
       }
     }
   }

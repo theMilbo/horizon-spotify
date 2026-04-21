@@ -1,7 +1,7 @@
 
 
 # Project Memory — horizon-spotify
-> 847 notes | Score threshold: >40
+> 871 notes | Score threshold: >40
 
 ## Safety — Never Run Destructive Commands
 
@@ -16,16 +16,22 @@
 - **ALWAYS** ask the user before running commands that modify system state, install packages, or make network requests.
 - When in doubt, **show the command first** and wait for approval.
 
-## Project Standards
+**Stack:** Unknown stack
 
-- Replaced auth Score — confirmed 3x
+## 📝 NOTE: 1 uncommitted file(s) in working tree.\n\n## Project Standards
+
+- Updated schema Score — confirmed 3x
 - what-changed in brainsync_auto.md — confirmed 3x
 - what-changed in brainsync_auto.md — confirmed 3x
-- Replaced auth Score — confirmed 3x
+- Strengthened types Recent
+- Updated schema Score — evolves the database schema to support new requirements — confirmed 3x
+- what-changed in shared-context.json — confirmed 4x
+- Strengthened types Comprehensive
 - what-changed in brainsync_auto.md — confirmed 3x
-- what-changed in brainsync_auto.md — confirmed 3x
-- Replaced auth Score — confirmed 3x
-- what-changed in brainsync_auto.md — confirmed 3x
+
+## Recent Decisions
+
+- decision in task.md
 
 ## Learned Patterns
 

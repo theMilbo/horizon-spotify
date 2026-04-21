@@ -450,6 +450,11 @@
     --spacing-scale-sm: 0.6;
     --spacing-scale-md: 0.7;
     --spacing-scale-default: 1.0;
+    --spacing-scale: var(--spacing-scale-default);
+
+    @media screen and (max-width: 749px) {
+      --spacing-scale: var(--spacing-scale-sm);
+    }
 
     /* Checkout buttons gap */
     --checkout-button-gap: 10px;
