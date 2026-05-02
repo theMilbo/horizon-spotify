@@ -132,9 +132,9 @@
         "signal_bCTNLi": {
           "type": "signal",
           "settings": {
-            "icon_type": "gold",
-            "title": "18K Forgyldning",
-            "text": "Holdbar og luksuriøs finish"
+            "icon_type": "diamond",
+            "title": "Lab Diamonds",
+            "text": "Hver diamant valgt nøje til dine ønsker"
           }
         },
         "signal_733fXT": {
