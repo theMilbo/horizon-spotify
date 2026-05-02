@@ -174,11 +174,12 @@
         "card_armbaand": {
           "type": "collection_card",
           "settings": {
-            "collection": "armband",
+            "collection": "diamond-line",
+            "image": "shopify://shop_images/7A7FA66B-3476-4CB3-AFE5-C8EAF2161BCB.png",
             "label": "Kollektion",
             "title": "Armbånd",
-            "description": "Elegante armbånd i 925 sterling sølv og 18K guld",
-            "cta_text": "Se armbånd"
+            "description": "Lab Diamond ringe i ekslusivt hvidgulv eller klassisk guld",
+            "cta_text": "Se ringe"
           }
         },
         "card_halskaeder": {
@@ -200,7 +201,7 @@
       "settings": {
         "section_width": "page-width",
         "title": "Vores kollektioner",
-        "subtitle": "Udforsk vores håndudvalgte smykker i 925 sterling sølv og 18K guld",
+        "subtitle": "Udforsk vores Lab Diamond Rings",
         "color_scheme": "scheme-1",
         "padding-block-start": 60,
         "padding-block-end": 60
