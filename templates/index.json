@@ -69,7 +69,7 @@
           "name": "t:names.button",
           "settings": {
             "label": "Udforsk kollektionen",
-            "link": "shopify://collections/all",
+            "link": "shopify://collections",
             "open_in_new_tab": false,
             "style_class": "button-secondary",
             "width": "fit-content",
