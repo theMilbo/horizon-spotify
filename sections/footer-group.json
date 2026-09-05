@@ -11,6 +11,53 @@
   "type": "footer",
   "name": "t:names.footer",
   "sections": {
+    "1788611351ccf5d73d": {
+      "type": "_blocks",
+      "blocks": {
+        "trustpilot_trustpilot_review_collector_widget_Utzt3p": {
+          "type": "shopify://apps/trustpilot/blocks/trustpilot_review_collector_widget/af628f2e-96c9-437f-bc0a-e8f7ff3fa8b4",
+          "settings": {
+            "locale": "en-US",
+            "width": 100,
+            "height": 52,
+            "vertical_space": 11,
+            "font_family": "Helvetica Neue",
+            "font_color": "#191919",
+            "border_color": "#00b67a"
+          }
+        }
+      },
+      "block_order": [
+        "trustpilot_trustpilot_review_collector_widget_Utzt3p"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
     "footer": {
       "type": "footer",
       "blocks": {
@@ -208,6 +255,7 @@
     }
   },
   "order": [
+    "1788611351ccf5d73d",
     "footer",
     "utilities"
   ]
