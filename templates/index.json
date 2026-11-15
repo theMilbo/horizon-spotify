@@ -42,7 +42,7 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p>Tidsløs dansk design i 925 sterling sølv og guld</p><p>Timeless pieces</p><p>Lab-grown Diamonds</p>",
+            "text": "<p>Tidsløs dansk design i 925 sterling sølv og guld</p><p></p><p>Lab-grown Diamonds</p>",
             "width": "fit-content",
             "max_width": "none",
             "alignment": "left",
