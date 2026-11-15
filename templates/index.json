@@ -42,9 +42,9 @@
           "type": "text",
           "name": "t:names.heading",
           "settings": {
-            "text": "<p>Tidsløs dansk design i 925 sterling sølv og gulv.&nbsp;</p><p>Håndudvalgte smykker, der holder i mange år.</p><p>Lab-grown Diamonds</p>",
+            "text": "<p>Tidsløs dansk design i 925 sterling sølv og guld</p><p>Timeless pieces</p><p>Lab-grown Diamonds</p>",
             "width": "fit-content",
-            "max_width": "normal",
+            "max_width": "narrow",
             "alignment": "left",
             "type_preset": "paragraph",
             "font": "var(--font-body--family)",
