@@ -221,7 +221,7 @@
         "card_armbaand": {
           "type": "collection_card",
           "settings": {
-            "collection": "diamond-line",
+            "collection": "diamond-kollektion",
             "image": "shopify://shop_images/7A7FA66B-3476-4CB3-AFE5-C8EAF2161BCB.png",
             "label": "Kollektion",
             "title": "Armbånd",
