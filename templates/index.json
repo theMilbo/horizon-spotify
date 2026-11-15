@@ -44,7 +44,7 @@
           "settings": {
             "text": "<p>Tidsløs dansk design i 925 sterling sølv og guld</p><p>Timeless pieces</p><p>Lab-grown Diamonds</p>",
             "width": "fit-content",
-            "max_width": "narrow",
+            "max_width": "none",
             "alignment": "left",
             "type_preset": "paragraph",
             "font": "var(--font-body--family)",
